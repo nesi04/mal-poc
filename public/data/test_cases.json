@@ -1,0 +1,2493 @@
+{
+ "baseline": [
+  {
+   "test_id": "TEST-001",
+   "scenario_code": "MAL-001",
+   "scenario_name": "Known-bad destination",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-001",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Known-bad final destination (dossier cases 3, 5, 6, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R1:KNOWN_BAD_DESTINATION",
+   "rules_fired": [
+    "R1"
+   ],
+   "inline_blocked": true,
+   "landing_expected": false,
+   "landing_logged": false,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": false,
+     "captured": false
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 2.0,
+   "ttt_s": 42.0,
+   "ttc_s": 1.0,
+   "propagation_s": 1.0,
+   "alert": {
+    "alert_id": "ALERT-001",
+    "test_id": "TEST-001",
+    "created_at": "2026-10-09T09:00:52Z",
+    "severity": "High",
+    "detection_type": "KNOWN_BAD_DESTINATION",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R1"
+   },
+   "incident": {
+    "incident_id": "INC-001",
+    "alert_id": "ALERT-001",
+    "test_id": "TEST-001",
+    "triage_started_at": "2026-10-09T09:01:34Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 3,
+    "triage_completed_at": "2026-10-09T09:04:34Z"
+   },
+   "containment": {
+    "containment_id": "CONT-001",
+    "incident_id": "INC-001",
+    "test_id": "TEST-001",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:00:52Z",
+    "completed_at": "2026-10-09T09:00:53Z",
+    "status": "Success",
+    "target": "secure-docs-verify.test",
+    "mode": "inline_block"
+   },
+   "data_origin": "synthetic",
+   "event_count": 9
+  },
+  {
+   "test_id": "TEST-002",
+   "scenario_code": "MAL-002",
+   "scenario_name": "First-seen domain",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-002",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Newly registered / rotating domain (dossier cases 3, 7)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 37.0,
+   "ttt_s": 97.0,
+   "ttc_s": 337.0,
+   "propagation_s": 70.0,
+   "alert": {
+    "alert_id": "ALERT-002",
+    "test_id": "TEST-002",
+    "created_at": "2026-10-09T09:11:44Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-002",
+    "alert_id": "ALERT-002",
+    "test_id": "TEST-002",
+    "triage_started_at": "2026-10-09T09:13:21Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T09:16:05Z"
+   },
+   "containment": {
+    "containment_id": "CONT-002",
+    "incident_id": "INC-002",
+    "test_id": "TEST-002",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:16:11Z",
+    "completed_at": "2026-10-09T09:17:21Z",
+    "status": "Success",
+    "target": "fresh-offers-hub.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-003",
+   "scenario_code": "MAL-003",
+   "scenario_name": "Lookalike domain",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-003",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Brand lookalike hostname (dossier cases 4, 5)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R3:LOOKALIKE_DOMAIN",
+   "rules_fired": [
+    "R3"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 73.0,
+   "ttt_s": 97.0,
+   "ttc_s": 30.0,
+   "propagation_s": 20.0,
+   "alert": {
+    "alert_id": "ALERT-003",
+    "test_id": "TEST-003",
+    "created_at": "2026-10-09T09:21:48Z",
+    "severity": "Medium",
+    "detection_type": "LOOKALIKE_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R3"
+   },
+   "incident": {
+    "incident_id": "INC-003",
+    "alert_id": "ALERT-003",
+    "test_id": "TEST-003",
+    "triage_started_at": "2026-10-09T09:23:25Z",
+    "analyst_id": "ANALYST-03",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T09:26:24Z"
+   },
+   "containment": {
+    "containment_id": "CONT-003",
+    "incident_id": "INC-003",
+    "test_id": "TEST-003",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:21:58Z",
+    "completed_at": "2026-10-09T09:22:18Z",
+    "status": "Success",
+    "target": "contoso-login-secure.test",
+    "mode": "automated"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-004",
+   "scenario_code": "MAL-004",
+   "scenario_name": "Two-hop redirect via disposable host",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-004",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Multi-hop redirect through disposable host (dossier cases 4, 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2",
+    "R4"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 42.0,
+   "ttt_s": 144.0,
+   "ttc_s": 416.0,
+   "propagation_s": 90.0,
+   "alert": {
+    "alert_id": "ALERT-004",
+    "test_id": "TEST-004",
+    "created_at": "2026-10-09T09:31:31Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-004",
+    "alert_id": "ALERT-004",
+    "test_id": "TEST-004",
+    "triage_started_at": "2026-10-09T09:33:55Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T09:36:52Z"
+   },
+   "containment": {
+    "containment_id": "CONT-004",
+    "incident_id": "INC-004",
+    "test_id": "TEST-004",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:36:57Z",
+    "completed_at": "2026-10-09T09:38:27Z",
+    "status": "Success",
+    "target": "r1.hop-relay.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-005",
+   "scenario_code": "MAL-005",
+   "scenario_name": "Two-hop redirect, second hop unlogged",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-005",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Redirect telemetry gap",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "REDIRECT_HOP_MISSING"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": false
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 31.0,
+   "ttt_s": 67.0,
+   "ttc_s": 306.0,
+   "propagation_s": 23.0,
+   "alert": {
+    "alert_id": "ALERT-005",
+    "test_id": "TEST-005",
+    "created_at": "2026-10-09T09:41:32Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-005",
+    "alert_id": "ALERT-005",
+    "test_id": "TEST-005",
+    "triage_started_at": "2026-10-09T09:42:39Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T09:45:30Z"
+   },
+   "containment": {
+    "containment_id": "CONT-005",
+    "incident_id": "INC-005",
+    "test_id": "TEST-005",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:46:15Z",
+    "completed_at": "2026-10-09T09:46:38Z",
+    "status": "Success",
+    "target": "r2.hop-relay.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-006",
+   "scenario_code": "MAL-006",
+   "scenario_name": "Ad-to-credential simulation",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-006",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Credential-harvest page (dossier cases 1, 4). Synthetic test event only; no secret captured",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": false,
+   "actual_containment": false,
+   "detection_rule": null,
+   "rules_fired": [],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": true,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "DETECTION_MISSED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": false
+    },
+    "Alert": {
+     "expected": true,
+     "captured": false
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": false
+    },
+    "Containment": {
+     "expected": true,
+     "captured": false
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": null,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": null,
+   "incident": null,
+   "containment": null,
+   "data_origin": "synthetic",
+   "event_count": 5
+  },
+  {
+   "test_id": "TEST-007",
+   "scenario_code": "MAL-007",
+   "scenario_name": "Benign control",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-007",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Clean legitimate ad (control)",
+   "benign": true,
+   "expected_detection": false,
+   "expected_containment": false,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": false,
+   "actual_containment": false,
+   "detection_rule": null,
+   "rules_fired": [],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": false,
+     "captured": false
+    },
+    "Alert": {
+     "expected": false,
+     "captured": false
+    },
+    "Investigation": {
+     "expected": false,
+     "captured": false
+    },
+    "Containment": {
+     "expected": false,
+     "captured": false
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": null,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": null,
+   "incident": null,
+   "containment": null,
+   "data_origin": "synthetic",
+   "event_count": 4
+  },
+  {
+   "test_id": "TEST-008",
+   "scenario_code": "MAL-008",
+   "scenario_name": "Rapidly changing URL",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-008",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Rotating infrastructure (dossier cases 3, 7)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R4:SUSPICIOUS_REDIRECT_CHAIN",
+   "rules_fired": [
+    "R4",
+    "R2"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": false,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "LANDING_NOT_LOGGED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": false
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 62.0,
+   "ttt_s": 117.0,
+   "ttc_s": 407.0,
+   "propagation_s": 31.0,
+   "alert": {
+    "alert_id": "ALERT-006",
+    "test_id": "TEST-008",
+    "created_at": "2026-10-09T10:11:33Z",
+    "severity": "Medium",
+    "detection_type": "SUSPICIOUS_REDIRECT_CHAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R4"
+   },
+   "incident": {
+    "incident_id": "INC-006",
+    "alert_id": "ALERT-006",
+    "test_id": "TEST-008",
+    "triage_started_at": "2026-10-09T10:13:30Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T10:17:10Z"
+   },
+   "containment": {
+    "containment_id": "CONT-006",
+    "incident_id": "INC-006",
+    "test_id": "TEST-008",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:17:49Z",
+    "completed_at": "2026-10-09T10:18:20Z",
+    "status": "Success",
+    "target": "a8f3k.rotating-edge.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-009",
+   "scenario_code": "MAL-009",
+   "scenario_name": "Trusted-site redirect",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-009",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Trusted domain as staging host (dossier cases 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": false,
+   "actual_containment": false,
+   "detection_rule": null,
+   "rules_fired": [],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "DETECTION_MISSED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": false
+    },
+    "Alert": {
+     "expected": true,
+     "captured": false
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": false
+    },
+    "Containment": {
+     "expected": true,
+     "captured": false
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": null,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": null,
+   "incident": null,
+   "containment": null,
+   "data_origin": "synthetic",
+   "event_count": 5
+  },
+  {
+   "test_id": "TEST-010",
+   "scenario_code": "MAL-010",
+   "scenario_name": "Download after click",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-010",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Post-click download (dossier cases 5, 6, 8). Harmless test artifact only",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": false,
+   "detection_rule": "R6:DOWNLOAD_AFTER_AD_CLICK",
+   "rules_fired": [
+    "R6"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "CONTAINMENT_FAILED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": false
+    }
+   },
+   "ttd_s": 34.0,
+   "ttt_s": 108.0,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": {
+    "alert_id": "ALERT-007",
+    "test_id": "TEST-010",
+    "created_at": "2026-10-09T10:31:08Z",
+    "severity": "High",
+    "detection_type": "DOWNLOAD_AFTER_AD_CLICK",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R6"
+   },
+   "incident": {
+    "incident_id": "INC-007",
+    "alert_id": "ALERT-007",
+    "test_id": "TEST-010",
+    "triage_started_at": "2026-10-09T10:32:56Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T10:35:25Z"
+   },
+   "containment": {
+    "containment_id": "CONT-007",
+    "incident_id": "INC-007",
+    "test_id": "TEST-010",
+    "action": "URL_block",
+    "requested_at": "2026-10-09T10:35:40Z",
+    "completed_at": null,
+    "status": "Failed",
+    "target": "https://app-update-center.test/setup_installer.test.bin",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-011",
+   "scenario_code": "MAL-011",
+   "scenario_name": "Cloaking",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-011",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Visitor filtering / decoy page for scanners (dossier cases 2, 4, 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2",
+    "R4"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": false,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "CLICK_NOT_CORRELATED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": false
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 47.0,
+   "ttt_s": 55.0,
+   "ttc_s": 332.0,
+   "propagation_s": 92.0,
+   "alert": {
+    "alert_id": "ALERT-008",
+    "test_id": "TEST-011",
+    "created_at": "2026-10-09T10:41:18Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-008",
+    "alert_id": "ALERT-008",
+    "test_id": "TEST-011",
+    "triage_started_at": "2026-10-09T10:42:13Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T10:45:01Z"
+   },
+   "containment": {
+    "containment_id": "CONT-008",
+    "incident_id": "INC-008",
+    "test_id": "TEST-011",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:45:18Z",
+    "completed_at": "2026-10-09T10:46:50Z",
+    "status": "Success",
+    "target": "traffic-filter.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-012",
+   "scenario_code": "MAL-012",
+   "scenario_name": "Benign control, partner domain",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-012",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Clean legitimate ad containing the brand token (control)",
+   "benign": true,
+   "expected_detection": false,
+   "expected_containment": false,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R3:LOOKALIKE_DOMAIN",
+   "rules_fired": [
+    "R3"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": true,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "FALSE_POSITIVE"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": false,
+     "captured": true
+    },
+    "Alert": {
+     "expected": false,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": false,
+     "captured": true
+    },
+    "Containment": {
+     "expected": false,
+     "captured": true
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": 40.0,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": {
+    "alert_id": "ALERT-009",
+    "test_id": "TEST-012",
+    "created_at": "2026-10-09T10:51:50Z",
+    "severity": "Medium",
+    "detection_type": "LOOKALIKE_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Closed - false positive",
+    "assigned_team": "SOC",
+    "rule": "R3"
+   },
+   "incident": {
+    "incident_id": "INC-009",
+    "alert_id": "ALERT-009",
+    "test_id": "TEST-012",
+    "triage_started_at": "2026-10-09T10:52:30Z",
+    "analyst_id": "ANALYST-03",
+    "investigation_status": "False Positive",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T10:54:00Z"
+   },
+   "containment": {
+    "containment_id": "CONT-009",
+    "incident_id": "INC-009",
+    "test_id": "TEST-012",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:52:00Z",
+    "completed_at": "2026-10-09T10:53:29Z",
+    "status": "Success",
+    "target": "contoso-events.test",
+    "mode": "automated"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  }
+ ],
+ "retest": [
+  {
+   "test_id": "TEST-001",
+   "scenario_code": "MAL-001",
+   "scenario_name": "Known-bad destination",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-001",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Known-bad final destination (dossier cases 3, 5, 6, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R1:KNOWN_BAD_DESTINATION",
+   "rules_fired": [
+    "R1"
+   ],
+   "inline_blocked": true,
+   "landing_expected": false,
+   "landing_logged": false,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": false,
+     "captured": false
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 2.0,
+   "ttt_s": 42.0,
+   "ttc_s": 1.0,
+   "propagation_s": 1.0,
+   "alert": {
+    "alert_id": "ALERT-001",
+    "test_id": "TEST-001",
+    "created_at": "2026-10-09T09:00:52Z",
+    "severity": "High",
+    "detection_type": "KNOWN_BAD_DESTINATION",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R1"
+   },
+   "incident": {
+    "incident_id": "INC-001",
+    "alert_id": "ALERT-001",
+    "test_id": "TEST-001",
+    "triage_started_at": "2026-10-09T09:01:34Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 3,
+    "triage_completed_at": "2026-10-09T09:04:34Z"
+   },
+   "containment": {
+    "containment_id": "CONT-001",
+    "incident_id": "INC-001",
+    "test_id": "TEST-001",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:00:52Z",
+    "completed_at": "2026-10-09T09:00:53Z",
+    "status": "Success",
+    "target": "secure-docs-verify.test",
+    "mode": "inline_block"
+   },
+   "data_origin": "synthetic",
+   "event_count": 9
+  },
+  {
+   "test_id": "TEST-002",
+   "scenario_code": "MAL-002",
+   "scenario_name": "First-seen domain",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-002",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Newly registered / rotating domain (dossier cases 3, 7)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 37.0,
+   "ttt_s": 97.0,
+   "ttc_s": 337.0,
+   "propagation_s": 70.0,
+   "alert": {
+    "alert_id": "ALERT-002",
+    "test_id": "TEST-002",
+    "created_at": "2026-10-09T09:11:44Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-002",
+    "alert_id": "ALERT-002",
+    "test_id": "TEST-002",
+    "triage_started_at": "2026-10-09T09:13:21Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T09:16:05Z"
+   },
+   "containment": {
+    "containment_id": "CONT-002",
+    "incident_id": "INC-002",
+    "test_id": "TEST-002",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:16:11Z",
+    "completed_at": "2026-10-09T09:17:21Z",
+    "status": "Success",
+    "target": "fresh-offers-hub.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-003",
+   "scenario_code": "MAL-003",
+   "scenario_name": "Lookalike domain",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-003",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Brand lookalike hostname (dossier cases 4, 5)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R3:LOOKALIKE_DOMAIN",
+   "rules_fired": [
+    "R3"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 73.0,
+   "ttt_s": 97.0,
+   "ttc_s": 30.0,
+   "propagation_s": 20.0,
+   "alert": {
+    "alert_id": "ALERT-003",
+    "test_id": "TEST-003",
+    "created_at": "2026-10-09T09:21:48Z",
+    "severity": "Medium",
+    "detection_type": "LOOKALIKE_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R3"
+   },
+   "incident": {
+    "incident_id": "INC-003",
+    "alert_id": "ALERT-003",
+    "test_id": "TEST-003",
+    "triage_started_at": "2026-10-09T09:23:25Z",
+    "analyst_id": "ANALYST-03",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T09:26:24Z"
+   },
+   "containment": {
+    "containment_id": "CONT-003",
+    "incident_id": "INC-003",
+    "test_id": "TEST-003",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:21:58Z",
+    "completed_at": "2026-10-09T09:22:18Z",
+    "status": "Success",
+    "target": "contoso-login-secure.test",
+    "mode": "automated"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-004",
+   "scenario_code": "MAL-004",
+   "scenario_name": "Two-hop redirect via disposable host",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-004",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Multi-hop redirect through disposable host (dossier cases 4, 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2",
+    "R4"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 42.0,
+   "ttt_s": 144.0,
+   "ttc_s": 416.0,
+   "propagation_s": 90.0,
+   "alert": {
+    "alert_id": "ALERT-004",
+    "test_id": "TEST-004",
+    "created_at": "2026-10-09T09:31:31Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-004",
+    "alert_id": "ALERT-004",
+    "test_id": "TEST-004",
+    "triage_started_at": "2026-10-09T09:33:55Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T09:36:52Z"
+   },
+   "containment": {
+    "containment_id": "CONT-004",
+    "incident_id": "INC-004",
+    "test_id": "TEST-004",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:36:57Z",
+    "completed_at": "2026-10-09T09:38:27Z",
+    "status": "Success",
+    "target": "r1.hop-relay.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-005",
+   "scenario_code": "MAL-005",
+   "scenario_name": "Two-hop redirect, second hop unlogged",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-005",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Redirect telemetry gap",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2",
+    "R4"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 31.0,
+   "ttt_s": 67.0,
+   "ttc_s": 306.0,
+   "propagation_s": 23.0,
+   "alert": {
+    "alert_id": "ALERT-005",
+    "test_id": "TEST-005",
+    "created_at": "2026-10-09T09:41:32Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-005",
+    "alert_id": "ALERT-005",
+    "test_id": "TEST-005",
+    "triage_started_at": "2026-10-09T09:42:39Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T09:45:30Z"
+   },
+   "containment": {
+    "containment_id": "CONT-005",
+    "incident_id": "INC-005",
+    "test_id": "TEST-005",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:46:15Z",
+    "completed_at": "2026-10-09T09:46:38Z",
+    "status": "Success",
+    "target": "r2.hop-relay.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-006",
+   "scenario_code": "MAL-006",
+   "scenario_name": "Ad-to-credential simulation",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-006",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Credential-harvest page (dossier cases 1, 4). Synthetic test event only; no secret captured",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R5:CREDENTIAL_ON_UNAPPROVED_ORIGIN",
+   "rules_fired": [
+    "R5"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": true,
+   "credential_detected": true,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 87.0,
+   "ttt_s": 37.0,
+   "ttc_s": 258.0,
+   "propagation_s": 30.0,
+   "alert": {
+    "alert_id": "ALERT-006",
+    "test_id": "TEST-006",
+    "created_at": "2026-10-09T09:51:52Z",
+    "severity": "High",
+    "detection_type": "CREDENTIAL_ON_UNAPPROVED_ORIGIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R5"
+   },
+   "incident": {
+    "incident_id": "INC-006",
+    "alert_id": "ALERT-006",
+    "test_id": "TEST-006",
+    "triage_started_at": "2026-10-09T09:52:29Z",
+    "analyst_id": "ANALYST-03",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T09:55:06Z"
+   },
+   "containment": {
+    "containment_id": "CONT-006",
+    "incident_id": "INC-006",
+    "test_id": "TEST-006",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T09:55:40Z",
+    "completed_at": "2026-10-09T09:56:10Z",
+    "status": "Success",
+    "target": "sso-verify-portal.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-007",
+   "scenario_code": "MAL-007",
+   "scenario_name": "Benign control",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-007",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Clean legitimate ad (control)",
+   "benign": true,
+   "expected_detection": false,
+   "expected_containment": false,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": false,
+   "actual_containment": false,
+   "detection_rule": null,
+   "rules_fired": [],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": false,
+     "captured": false
+    },
+    "Alert": {
+     "expected": false,
+     "captured": false
+    },
+    "Investigation": {
+     "expected": false,
+     "captured": false
+    },
+    "Containment": {
+     "expected": false,
+     "captured": false
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": null,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": null,
+   "incident": null,
+   "containment": null,
+   "data_origin": "synthetic",
+   "event_count": 4
+  },
+  {
+   "test_id": "TEST-008",
+   "scenario_code": "MAL-008",
+   "scenario_name": "Rapidly changing URL",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-008",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Rotating infrastructure (dossier cases 3, 7)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R4:SUSPICIOUS_REDIRECT_CHAIN",
+   "rules_fired": [
+    "R4",
+    "R2",
+    "R2"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 62.0,
+   "ttt_s": 117.0,
+   "ttc_s": 407.0,
+   "propagation_s": 31.0,
+   "alert": {
+    "alert_id": "ALERT-007",
+    "test_id": "TEST-008",
+    "created_at": "2026-10-09T10:11:33Z",
+    "severity": "Medium",
+    "detection_type": "SUSPICIOUS_REDIRECT_CHAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R4"
+   },
+   "incident": {
+    "incident_id": "INC-007",
+    "alert_id": "ALERT-007",
+    "test_id": "TEST-008",
+    "triage_started_at": "2026-10-09T10:13:30Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T10:17:10Z"
+   },
+   "containment": {
+    "containment_id": "CONT-007",
+    "incident_id": "INC-007",
+    "test_id": "TEST-008",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:17:49Z",
+    "completed_at": "2026-10-09T10:18:20Z",
+    "status": "Success",
+    "target": "a8f3k.rotating-edge.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-009",
+   "scenario_code": "MAL-009",
+   "scenario_name": "Trusted-site redirect",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-009",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Trusted domain as staging host (dossier cases 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R1:KNOWN_BAD_DESTINATION",
+   "rules_fired": [
+    "R1"
+   ],
+   "inline_blocked": true,
+   "landing_expected": false,
+   "landing_logged": false,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": false,
+     "captured": false
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 3.0,
+   "ttt_s": 86.0,
+   "ttc_s": 1.0,
+   "propagation_s": 1.0,
+   "alert": {
+    "alert_id": "ALERT-008",
+    "test_id": "TEST-009",
+    "created_at": "2026-10-09T10:21:00Z",
+    "severity": "High",
+    "detection_type": "KNOWN_BAD_DESTINATION",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R1"
+   },
+   "incident": {
+    "incident_id": "INC-008",
+    "alert_id": "ALERT-008",
+    "test_id": "TEST-009",
+    "triage_started_at": "2026-10-09T10:22:26Z",
+    "analyst_id": "ANALYST-03",
+    "investigation_status": "Confirmed",
+    "correlated_events": 4,
+    "triage_completed_at": "2026-10-09T10:26:05Z"
+   },
+   "containment": {
+    "containment_id": "CONT-008",
+    "incident_id": "INC-008",
+    "test_id": "TEST-009",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:21:00Z",
+    "completed_at": "2026-10-09T10:21:01Z",
+    "status": "Success",
+    "target": "docs-share-review.test",
+    "mode": "inline_block"
+   },
+   "data_origin": "synthetic",
+   "event_count": 10
+  },
+  {
+   "test_id": "TEST-010",
+   "scenario_code": "MAL-010",
+   "scenario_name": "Download after click",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-010",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Post-click download (dossier cases 5, 6, 8). Harmless test artifact only",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": true,
+   "actual_containment": false,
+   "detection_rule": "R6:DOWNLOAD_AFTER_AD_CLICK",
+   "rules_fired": [
+    "R6"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "CONTAINMENT_FAILED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": false
+    }
+   },
+   "ttd_s": 34.0,
+   "ttt_s": 108.0,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": {
+    "alert_id": "ALERT-009",
+    "test_id": "TEST-010",
+    "created_at": "2026-10-09T10:31:08Z",
+    "severity": "High",
+    "detection_type": "DOWNLOAD_AFTER_AD_CLICK",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R6"
+   },
+   "incident": {
+    "incident_id": "INC-009",
+    "alert_id": "ALERT-009",
+    "test_id": "TEST-010",
+    "triage_started_at": "2026-10-09T10:32:56Z",
+    "analyst_id": "ANALYST-01",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T10:35:25Z"
+   },
+   "containment": {
+    "containment_id": "CONT-009",
+    "incident_id": "INC-009",
+    "test_id": "TEST-010",
+    "action": "URL_block",
+    "requested_at": "2026-10-09T10:35:40Z",
+    "completed_at": null,
+    "status": "Failed",
+    "target": "https://app-update-center.test/setup_installer.test.bin",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-011",
+   "scenario_code": "MAL-011",
+   "scenario_name": "Cloaking",
+   "campaign_id": "CAMP-002",
+   "ad_id": "AD-011",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Visitor filtering / decoy page for scanners (dossier cases 2, 4, 7, 8)",
+   "benign": false,
+   "expected_detection": true,
+   "expected_containment": true,
+   "expected_redirect_hops": 2,
+   "logged_redirect_hops": 2,
+   "actual_detection": true,
+   "actual_containment": true,
+   "detection_rule": "R2:FIRST_SEEN_DOMAIN",
+   "rules_fired": [
+    "R2",
+    "R4"
+   ],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": false,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Fail",
+   "gaps": [
+    "CLICK_NOT_CORRELATED"
+   ],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": false
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": true,
+     "captured": true
+    },
+    "Alert": {
+     "expected": true,
+     "captured": true
+    },
+    "Investigation": {
+     "expected": true,
+     "captured": true
+    },
+    "Containment": {
+     "expected": true,
+     "captured": true
+    }
+   },
+   "ttd_s": 47.0,
+   "ttt_s": 55.0,
+   "ttc_s": 332.0,
+   "propagation_s": 92.0,
+   "alert": {
+    "alert_id": "ALERT-010",
+    "test_id": "TEST-011",
+    "created_at": "2026-10-09T10:41:18Z",
+    "severity": "Medium",
+    "detection_type": "FIRST_SEEN_DOMAIN",
+    "source": "POC-DetectionEngine",
+    "status": "Confirmed",
+    "assigned_team": "SOC",
+    "rule": "R2"
+   },
+   "incident": {
+    "incident_id": "INC-010",
+    "alert_id": "ALERT-010",
+    "test_id": "TEST-011",
+    "triage_started_at": "2026-10-09T10:42:13Z",
+    "analyst_id": "ANALYST-02",
+    "investigation_status": "Confirmed",
+    "correlated_events": 5,
+    "triage_completed_at": "2026-10-09T10:45:01Z"
+   },
+   "containment": {
+    "containment_id": "CONT-010",
+    "incident_id": "INC-010",
+    "test_id": "TEST-011",
+    "action": "domain_block",
+    "requested_at": "2026-10-09T10:45:18Z",
+    "completed_at": "2026-10-09T10:46:50Z",
+    "status": "Success",
+    "target": "traffic-filter.test",
+    "mode": "analyst_requested"
+   },
+   "data_origin": "synthetic",
+   "event_count": 11
+  },
+  {
+   "test_id": "TEST-012",
+   "scenario_code": "MAL-012",
+   "scenario_name": "Benign control, partner domain",
+   "campaign_id": "CAMP-001",
+   "ad_id": "AD-012",
+   "platform": "Simulated-Search-Ads",
+   "domain_profile": "Clean legitimate ad containing the brand token (control)",
+   "benign": true,
+   "expected_detection": false,
+   "expected_containment": false,
+   "expected_redirect_hops": 1,
+   "logged_redirect_hops": 1,
+   "actual_detection": false,
+   "actual_containment": false,
+   "detection_rule": null,
+   "rules_fired": [],
+   "inline_blocked": false,
+   "landing_expected": true,
+   "landing_logged": true,
+   "click_correlated": true,
+   "legit_blocked": false,
+   "credential_event": false,
+   "credential_detected": false,
+   "result": "Pass",
+   "gaps": [],
+   "evidence": {
+    "Campaign": {
+     "expected": true,
+     "captured": true
+    },
+    "Advertisement": {
+     "expected": true,
+     "captured": true
+    },
+    "Impression": {
+     "expected": true,
+     "captured": true
+    },
+    "Click": {
+     "expected": true,
+     "captured": true
+    },
+    "Redirect": {
+     "expected": true,
+     "captured": true
+    },
+    "Landing": {
+     "expected": true,
+     "captured": true
+    },
+    "Detection": {
+     "expected": false,
+     "captured": false
+    },
+    "Alert": {
+     "expected": false,
+     "captured": false
+    },
+    "Investigation": {
+     "expected": false,
+     "captured": false
+    },
+    "Containment": {
+     "expected": false,
+     "captured": false
+    }
+   },
+   "ttd_s": null,
+   "ttt_s": null,
+   "ttc_s": null,
+   "propagation_s": null,
+   "alert": null,
+   "incident": null,
+   "containment": null,
+   "data_origin": "synthetic",
+   "event_count": 4
+  }
+ ]
+}

@@ -1,0 +1,306 @@
+[
+ {
+  "test_id": "TEST-001",
+  "scenario_code": "MAL-001",
+  "scenario_name": "Known-bad destination",
+  "baseline": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-002",
+  "scenario_code": "MAL-002",
+  "scenario_name": "First-seen domain",
+  "baseline": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-003",
+  "scenario_code": "MAL-003",
+  "scenario_name": "Lookalike domain",
+  "baseline": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-004",
+  "scenario_code": "MAL-004",
+  "scenario_name": "Two-hop redirect via disposable host",
+  "baseline": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": []
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": []
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-005",
+  "scenario_code": "MAL-005",
+  "scenario_name": "Two-hop redirect, second hop unlogged",
+  "baseline": {
+   "result": "Fail",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 2,
+   "gaps": [
+    "REDIRECT_HOP_MISSING"
+   ]
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": []
+  },
+  "changed": true,
+  "fixes_applied": [
+   "Improve redirect logging so every hop is captured."
+  ]
+ },
+ {
+  "test_id": "TEST-006",
+  "scenario_code": "MAL-006",
+  "scenario_name": "Ad-to-credential simulation",
+  "baseline": {
+   "result": "Fail",
+   "detected": false,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": [
+    "DETECTION_MISSED"
+   ]
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": true,
+  "fixes_applied": [
+   "Enable the credential-on-unapproved-origin rule (R5)."
+  ]
+ },
+ {
+  "test_id": "TEST-007",
+  "scenario_code": "MAL-007",
+  "scenario_name": "Benign control",
+  "baseline": {
+   "result": "Pass",
+   "detected": false,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": false,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-008",
+  "scenario_code": "MAL-008",
+  "scenario_name": "Rapidly changing URL",
+  "baseline": {
+   "result": "Fail",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": [
+    "LANDING_NOT_LOGGED"
+   ]
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": []
+  },
+  "changed": true,
+  "fixes_applied": [
+   "Restore landing-event logging for rotating domains."
+  ]
+ },
+ {
+  "test_id": "TEST-009",
+  "scenario_code": "MAL-009",
+  "scenario_name": "Trusted-site redirect",
+  "baseline": {
+   "result": "Fail",
+   "detected": false,
+   "contained": false,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": [
+    "DETECTION_MISSED"
+   ]
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": []
+  },
+  "changed": true,
+  "fixes_applied": [
+   "Evaluate the final destination of the redirect chain, not only the first host."
+  ]
+ },
+ {
+  "test_id": "TEST-010",
+  "scenario_code": "MAL-010",
+  "scenario_name": "Download after click",
+  "baseline": {
+   "result": "Fail",
+   "detected": true,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": [
+    "CONTAINMENT_FAILED"
+   ]
+  },
+  "retest": {
+   "result": "Fail",
+   "detected": true,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": [
+    "CONTAINMENT_FAILED"
+   ]
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-011",
+  "scenario_code": "MAL-011",
+  "scenario_name": "Cloaking",
+  "baseline": {
+   "result": "Fail",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": [
+    "CLICK_NOT_CORRELATED"
+   ]
+  },
+  "retest": {
+   "result": "Fail",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 2,
+   "expected_hops": 2,
+   "gaps": [
+    "CLICK_NOT_CORRELATED"
+   ]
+  },
+  "changed": false,
+  "fixes_applied": []
+ },
+ {
+  "test_id": "TEST-012",
+  "scenario_code": "MAL-012",
+  "scenario_name": "Benign control, partner domain",
+  "baseline": {
+   "result": "Fail",
+   "detected": true,
+   "contained": true,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": [
+    "FALSE_POSITIVE"
+   ]
+  },
+  "retest": {
+   "result": "Pass",
+   "detected": false,
+   "contained": false,
+   "logged_hops": 1,
+   "expected_hops": 1,
+   "gaps": []
+  },
+  "changed": true,
+  "fixes_applied": [
+   "Allow-list the approved partner domain and tune the lookalike rule (R3)."
+  ]
+ }
+]

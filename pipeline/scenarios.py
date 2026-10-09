@@ -1,0 +1,93 @@
+"""Red-team scenario catalog. All domains are reserved .test names (synthetic).
+
+Each scenario is modelled on a pattern from the case-study dossier. `hops` lists the destination
+domain of each redirect hop; the last one is the final landing domain.
+"""
+
+SCENARIOS = [
+    dict(code="MAL-001", name="Known-bad destination", campaign_type="search", keyword_class="software-download",
+         ad_title="Free PDF Tool - Official Download", display_domain="pdf-tools-hub.test",
+         hops=["secure-docs-verify.test"], benign=False, credential=False, download=False, cloaking=False,
+         pattern="Known-bad final destination (dossier cases 3, 5, 6, 8)",
+         intended_signal="R1 threat-intel match, blocked inline before landing"),
+    dict(code="MAL-002", name="First-seen domain", campaign_type="search", keyword_class="software-download",
+         ad_title="Fast File Converter", display_domain="file-convert-pro.test",
+         hops=["fresh-offers-hub.test"], benign=False, credential=False, download=False, cloaking=False,
+         pattern="Newly registered / rotating domain (dossier cases 3, 7)",
+         intended_signal="R2 first-seen domain"),
+    dict(code="MAL-003", name="Lookalike domain", campaign_type="display", keyword_class="cloud-login",
+         ad_title="Contoso Account Security Notice", display_domain="contoso.test",
+         hops=["contoso-login-secure.test"], benign=False, credential=False, download=False, cloaking=False,
+         pattern="Brand lookalike hostname (dossier cases 4, 5)",
+         intended_signal="R3 lookalike domain"),
+    dict(code="MAL-004", name="Two-hop redirect via disposable host", campaign_type="search", keyword_class="collab-app",
+         ad_title="Team Meeting App - Download", display_domain="meet-app-center.test",
+         hops=["r1.hop-relay.test", "account-check-portal.test"], benign=False, credential=False, download=False,
+         cloaking=False, pattern="Multi-hop redirect through disposable host (dossier cases 4, 7, 8)",
+         intended_signal="R4 redirect chain (plus R2 on the relay)"),
+    dict(code="MAL-005", name="Two-hop redirect, second hop unlogged", campaign_type="display", keyword_class="invoice-docs",
+         ad_title="Invoice Review Center", display_domain="invoice-review.test",
+         hops=["r2.hop-relay.test", "billing-review-center.test"], benign=False, credential=False, download=False,
+         cloaking=False, pattern="Redirect telemetry gap",
+         intended_signal="Detected, but hop 2 missing from telemetry in baseline"),
+    dict(code="MAL-006", name="Ad-to-credential simulation", campaign_type="search", keyword_class="cloud-login",
+         ad_title="Single Sign-On Portal", display_domain="sso-portal.test",
+         hops=["sso-verify-portal.test"], benign=False, credential=True, download=False, cloaking=False,
+         pattern="Credential-harvest page (dossier cases 1, 4). Synthetic test event only; no secret captured",
+         intended_signal="R5 credential on unapproved origin (rule disabled in baseline)"),
+    dict(code="MAL-007", name="Benign control", campaign_type="search", keyword_class="cloud-login",
+         ad_title="Contoso Official Site", display_domain="contoso.test",
+         hops=["contoso.test"], benign=True, credential=False, download=False, cloaking=False,
+         pattern="Clean legitimate ad (control)", intended_signal="No incident"),
+    dict(code="MAL-008", name="Rapidly changing URL", campaign_type="display", keyword_class="shopping-offer",
+         ad_title="Limited Time Offer", display_domain="deal-finder.test",
+         hops=["a8f3k.rotating-edge.test", "promo-gate-7q.test"], benign=False, credential=False, download=False,
+         cloaking=False, pattern="Rotating infrastructure (dossier cases 3, 7)",
+         intended_signal="Behavioural detection (R2 + R4), not IOC; landing event lost in baseline"),
+    dict(code="MAL-009", name="Trusted-site redirect", campaign_type="search", keyword_class="invoice-docs",
+         ad_title="Shared Document Viewer", display_domain="doc-viewer.test",
+         hops=["files.trusted-cloud.test", "docs-share-review.test"], benign=False, credential=False, download=False,
+         cloaking=False, pattern="Trusted domain as staging host (dossier cases 7, 8)",
+         intended_signal="Final destination must be evaluated, not just the first host"),
+    dict(code="MAL-010", name="Download after click", campaign_type="search", keyword_class="software-download",
+         ad_title="System Update Center", display_domain="update-center.test",
+         hops=["app-update-center.test"], benign=False, credential=False, download=True, cloaking=False,
+         pattern="Post-click download (dossier cases 5, 6, 8). Harmless test artifact only",
+         intended_signal="R6 download after ad click; containment fails in baseline"),
+    dict(code="MAL-011", name="Cloaking", campaign_type="display", keyword_class="shopping-offer",
+         ad_title="Exclusive Partner Offer", display_domain="partner-offers.test",
+         hops=["traffic-filter.test", "partner-offer-view.test"], benign=False, credential=False, download=False,
+         cloaking=True, pattern="Visitor filtering / decoy page for scanners (dossier cases 2, 4, 7, 8)",
+         intended_signal="R4 + R2; click not correlated to impression in baseline"),
+    dict(code="MAL-012", name="Benign control, partner domain", campaign_type="search", keyword_class="collab-app",
+         ad_title="Contoso Events Registration", display_domain="contoso-events.test",
+         hops=["contoso-events.test"], benign=True, credential=False, download=False, cloaking=False,
+         pattern="Clean legitimate ad containing the brand token (control)",
+         intended_signal="Must not be blocked; lookalike rule false-positives in baseline"),
+]
+
+# domain -> age in days, category. Used by the Blue-side enrichment (simulated domain intelligence).
+REGISTRY = {
+    "secure-docs-verify.test": dict(age_days=45, category="phishing"),
+    "fresh-offers-hub.test": dict(age_days=2, category="uncategorised"),
+    "contoso-login-secure.test": dict(age_days=30, category="uncategorised"),
+    "r1.hop-relay.test": dict(age_days=1, category="redirector"),
+    "account-check-portal.test": dict(age_days=20, category="uncategorised"),
+    "r2.hop-relay.test": dict(age_days=1, category="redirector"),
+    "billing-review-center.test": dict(age_days=15, category="uncategorised"),
+    "sso-verify-portal.test": dict(age_days=60, category="uncategorised"),
+    "contoso.test": dict(age_days=3000, category="business"),
+    "a8f3k.rotating-edge.test": dict(age_days=0, category="redirector"),
+    "promo-gate-7q.test": dict(age_days=0, category="uncategorised"),
+    "files.trusted-cloud.test": dict(age_days=2500, category="cloud-storage"),
+    "docs-share-review.test": dict(age_days=12, category="phishing"),
+    "app-update-center.test": dict(age_days=20, category="uncategorised"),
+    "traffic-filter.test": dict(age_days=3, category="redirector"),
+    "partner-offer-view.test": dict(age_days=25, category="uncategorised"),
+    "contoso-events.test": dict(age_days=800, category="business"),
+}
+
+# Threat-intel table. Synthetic entries for the known-bad scenarios; optional public entries
+# are merged in by run_pipeline.py when data/public/malicious_urls.csv is present.
+KNOWN_BAD_SYNTHETIC = {"secure-docs-verify.test", "docs-share-review.test"}
+TRUSTED_CATEGORIES = {"business", "cloud-storage"}

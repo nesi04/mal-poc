@@ -1,0 +1,527 @@
+{
+ "definitions": [
+  {
+   "id": "impression_click_visibility",
+   "name": "Impression to Click Visibility",
+   "category": "Visibility",
+   "formula": "correlated clicks / controlled impressions x 100",
+   "start": "Impression logged",
+   "end": "Click logged with its impression_id",
+   "note": "The red team clicks every controlled impression, so this measures Blue-side correlation, not CTR."
+  },
+  {
+   "id": "click_landing_visibility",
+   "name": "Click to Landing Visibility",
+   "category": "Visibility",
+   "formula": "correlated landing events / controlled clicks x 100",
+   "start": "Click",
+   "end": "Landing event logged",
+   "note": "Journeys blocked inline before landing lower this figure; the breakdown separates blocks from telemetry loss."
+  },
+  {
+   "id": "detection_coverage",
+   "name": "Detection Coverage",
+   "category": "Detection",
+   "formula": "attack paths with the expected detection / total attack paths x 100",
+   "start": "-",
+   "end": "-",
+   "note": "Benign controls are excluded from the denominator."
+  },
+  {
+   "id": "ttd",
+   "name": "Time to Detection (TTD)",
+   "category": "Response speed",
+   "formula": "detection timestamp - first redirect hop (attack event)",
+   "start": "First redirect hop",
+   "end": "Detection",
+   "note": "Detection latency is SIMULATED per rule."
+  },
+  {
+   "id": "ttt",
+   "name": "Time to Triage (TTT)",
+   "category": "Response speed",
+   "formula": "triage start - alert creation",
+   "start": "Alert created",
+   "end": "Triage started",
+   "note": "SOC timings are SIMULATED."
+  },
+  {
+   "id": "ttc",
+   "name": "Time to Containment (TTC)",
+   "category": "Response speed",
+   "formula": "containment effective - alert creation",
+   "start": "Alert created",
+   "end": "Containment effective",
+   "note": "Failed containments are excluded from the statistics and reported separately."
+  },
+  {
+   "id": "blocking_propagation",
+   "name": "Blocking Propagation Time",
+   "category": "Containment",
+   "formula": "containment effective - containment requested",
+   "start": "Block requested",
+   "end": "Block effective",
+   "note": "SIMULATED."
+  },
+  {
+   "id": "containment_success",
+   "name": "Containment Success Rate",
+   "category": "Containment",
+   "formula": "attack paths successfully contained / total attack paths x 100",
+   "start": "-",
+   "end": "-",
+   "note": "Undetected paths count as not contained."
+  },
+  {
+   "id": "redirect_inspection",
+   "name": "Redirect Inspection Coverage",
+   "category": "Visibility",
+   "formula": "redirect hops logged / total redirect hops x 100",
+   "start": "-",
+   "end": "-",
+   "note": ""
+  },
+  {
+   "id": "false_positive",
+   "name": "False Positive / Legitimate Destination Check",
+   "category": "Safety / quality",
+   "formula": "benign controls generating an incident / benign controls x 100",
+   "start": "-",
+   "end": "-",
+   "note": "Only two benign controls exist, so the rate is illustrative."
+  },
+  {
+   "id": "identity_protection",
+   "name": "Identity Protection",
+   "category": "Detection",
+   "formula": "credential-simulation events detected / executed x 100",
+   "start": "-",
+   "end": "-",
+   "note": "Synthetic test events only. No credential or secret is ever collected."
+  },
+  {
+   "id": "evidence_completeness",
+   "name": "Evidence Completeness",
+   "category": "Safety / quality",
+   "formula": "evidence items captured / evidence items expected x 100",
+   "start": "-",
+   "end": "-",
+   "note": "POC metric over a 10-item checklist; not an industry standard."
+  },
+  {
+   "id": "journey_reconstruction",
+   "name": "Journey Reconstruction",
+   "category": "Safety / quality",
+   "formula": "journeys with impression, linked click, all hops and landing (if expected) / total journeys x 100",
+   "start": "-",
+   "end": "-",
+   "note": ""
+  }
+ ],
+ "runs": {
+  "baseline": {
+   "kpis": {
+    "impression_click_visibility": {
+     "value": 91.7,
+     "num": 11,
+     "den": 12
+    },
+    "click_landing_visibility": {
+     "value": 83.3,
+     "num": 10,
+     "den": 12,
+     "blocked_inline": 1,
+     "missing_telemetry": 1
+    },
+    "detection_coverage": {
+     "value": 80.0,
+     "num": 8,
+     "den": 10
+    },
+    "ttd": {
+     "n": 8,
+     "mean": 41.0,
+     "median": 39.5,
+     "min": 2.0,
+     "max": 73.0
+    },
+    "ttt": {
+     "n": 9,
+     "mean": 85.2,
+     "median": 97.0,
+     "min": 40.0,
+     "max": 144.0
+    },
+    "ttc": {
+     "n": 7,
+     "mean": 261.3,
+     "median": 332.0,
+     "min": 1.0,
+     "max": 416.0
+    },
+    "blocking_propagation": {
+     "n": 7,
+     "mean": 46.7,
+     "median": 31.0,
+     "min": 1.0,
+     "max": 92.0
+    },
+    "redirect_inspection": {
+     "value": 94.1,
+     "num": 16,
+     "den": 17
+    },
+    "containment_success": {
+     "value": 70.0,
+     "num": 7,
+     "den": 10,
+     "attempted": 8,
+     "failed": 1
+    },
+    "false_positive": {
+     "legitimate_tested": 2,
+     "legitimate_with_incident": 1,
+     "legitimate_blocked": 1,
+     "rate": {
+      "value": 50.0,
+      "num": 1,
+      "den": 2
+     }
+    },
+    "identity_protection": {
+     "value": 0.0,
+     "num": 0,
+     "den": 1
+    },
+    "evidence_completeness": {
+     "value": 89.2,
+     "num": 99,
+     "den": 111,
+     "label": "POC evidence-completeness metric (not an industry standard)"
+    },
+    "journey_reconstruction": {
+     "value": 75.0,
+     "num": 9,
+     "den": 12
+    },
+    "alerts": {
+     "total": 9,
+     "true_positive": 8,
+     "false_positive": 1,
+     "by_severity": {
+      "High": 2,
+      "Medium": 7,
+      "Low": 0
+     }
+    },
+    "totals": {
+     "tests": 12,
+     "attack_tests": 10,
+     "benign_tests": 2,
+     "pass_": 5,
+     "fail": 7
+    }
+   },
+   "per_test": [
+    {
+     "test_id": "TEST-001",
+     "scenario_code": "MAL-001",
+     "ttd_s": 2.0,
+     "ttt_s": 42.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-002",
+     "scenario_code": "MAL-002",
+     "ttd_s": 37.0,
+     "ttt_s": 97.0,
+     "ttc_s": 337.0,
+     "propagation_s": 70.0
+    },
+    {
+     "test_id": "TEST-003",
+     "scenario_code": "MAL-003",
+     "ttd_s": 73.0,
+     "ttt_s": 97.0,
+     "ttc_s": 30.0,
+     "propagation_s": 20.0
+    },
+    {
+     "test_id": "TEST-004",
+     "scenario_code": "MAL-004",
+     "ttd_s": 42.0,
+     "ttt_s": 144.0,
+     "ttc_s": 416.0,
+     "propagation_s": 90.0
+    },
+    {
+     "test_id": "TEST-005",
+     "scenario_code": "MAL-005",
+     "ttd_s": 31.0,
+     "ttt_s": 67.0,
+     "ttc_s": 306.0,
+     "propagation_s": 23.0
+    },
+    {
+     "test_id": "TEST-006",
+     "scenario_code": "MAL-006",
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-007",
+     "scenario_code": "MAL-007",
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-008",
+     "scenario_code": "MAL-008",
+     "ttd_s": 62.0,
+     "ttt_s": 117.0,
+     "ttc_s": 407.0,
+     "propagation_s": 31.0
+    },
+    {
+     "test_id": "TEST-009",
+     "scenario_code": "MAL-009",
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-010",
+     "scenario_code": "MAL-010",
+     "ttd_s": 34.0,
+     "ttt_s": 108.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-011",
+     "scenario_code": "MAL-011",
+     "ttd_s": 47.0,
+     "ttt_s": 55.0,
+     "ttc_s": 332.0,
+     "propagation_s": 92.0
+    },
+    {
+     "test_id": "TEST-012",
+     "scenario_code": "MAL-012",
+     "ttd_s": null,
+     "ttt_s": 40.0,
+     "ttc_s": null,
+     "propagation_s": null
+    }
+   ]
+  },
+  "retest": {
+   "kpis": {
+    "impression_click_visibility": {
+     "value": 91.7,
+     "num": 11,
+     "den": 12
+    },
+    "click_landing_visibility": {
+     "value": 83.3,
+     "num": 10,
+     "den": 12,
+     "blocked_inline": 2,
+     "missing_telemetry": 0
+    },
+    "detection_coverage": {
+     "value": 100.0,
+     "num": 10,
+     "den": 10
+    },
+    "ttd": {
+     "n": 10,
+     "mean": 41.8,
+     "median": 39.5,
+     "min": 2.0,
+     "max": 87.0
+    },
+    "ttt": {
+     "n": 10,
+     "mean": 85.0,
+     "median": 91.5,
+     "min": 37.0,
+     "max": 144.0
+    },
+    "ttc": {
+     "n": 9,
+     "mean": 232.0,
+     "median": 306.0,
+     "min": 1.0,
+     "max": 416.0
+    },
+    "blocking_propagation": {
+     "n": 9,
+     "mean": 39.8,
+     "median": 30.0,
+     "min": 1.0,
+     "max": 92.0
+    },
+    "redirect_inspection": {
+     "value": 100.0,
+     "num": 17,
+     "den": 17
+    },
+    "containment_success": {
+     "value": 90.0,
+     "num": 9,
+     "den": 10,
+     "attempted": 10,
+     "failed": 1
+    },
+    "false_positive": {
+     "legitimate_tested": 2,
+     "legitimate_with_incident": 0,
+     "legitimate_blocked": 0,
+     "rate": {
+      "value": 0.0,
+      "num": 0,
+      "den": 2
+     }
+    },
+    "identity_protection": {
+     "value": 100.0,
+     "num": 1,
+     "den": 1
+    },
+    "evidence_completeness": {
+     "value": 98.2,
+     "num": 108,
+     "den": 110,
+     "label": "POC evidence-completeness metric (not an industry standard)"
+    },
+    "journey_reconstruction": {
+     "value": 91.7,
+     "num": 11,
+     "den": 12
+    },
+    "alerts": {
+     "total": 10,
+     "true_positive": 10,
+     "false_positive": 0,
+     "by_severity": {
+      "High": 4,
+      "Medium": 6,
+      "Low": 0
+     }
+    },
+    "totals": {
+     "tests": 12,
+     "attack_tests": 10,
+     "benign_tests": 2,
+     "pass_": 10,
+     "fail": 2
+    }
+   },
+   "per_test": [
+    {
+     "test_id": "TEST-001",
+     "scenario_code": "MAL-001",
+     "ttd_s": 2.0,
+     "ttt_s": 42.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-002",
+     "scenario_code": "MAL-002",
+     "ttd_s": 37.0,
+     "ttt_s": 97.0,
+     "ttc_s": 337.0,
+     "propagation_s": 70.0
+    },
+    {
+     "test_id": "TEST-003",
+     "scenario_code": "MAL-003",
+     "ttd_s": 73.0,
+     "ttt_s": 97.0,
+     "ttc_s": 30.0,
+     "propagation_s": 20.0
+    },
+    {
+     "test_id": "TEST-004",
+     "scenario_code": "MAL-004",
+     "ttd_s": 42.0,
+     "ttt_s": 144.0,
+     "ttc_s": 416.0,
+     "propagation_s": 90.0
+    },
+    {
+     "test_id": "TEST-005",
+     "scenario_code": "MAL-005",
+     "ttd_s": 31.0,
+     "ttt_s": 67.0,
+     "ttc_s": 306.0,
+     "propagation_s": 23.0
+    },
+    {
+     "test_id": "TEST-006",
+     "scenario_code": "MAL-006",
+     "ttd_s": 87.0,
+     "ttt_s": 37.0,
+     "ttc_s": 258.0,
+     "propagation_s": 30.0
+    },
+    {
+     "test_id": "TEST-007",
+     "scenario_code": "MAL-007",
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-008",
+     "scenario_code": "MAL-008",
+     "ttd_s": 62.0,
+     "ttt_s": 117.0,
+     "ttc_s": 407.0,
+     "propagation_s": 31.0
+    },
+    {
+     "test_id": "TEST-009",
+     "scenario_code": "MAL-009",
+     "ttd_s": 3.0,
+     "ttt_s": 86.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-010",
+     "scenario_code": "MAL-010",
+     "ttd_s": 34.0,
+     "ttt_s": 108.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-011",
+     "scenario_code": "MAL-011",
+     "ttd_s": 47.0,
+     "ttt_s": 55.0,
+     "ttc_s": 332.0,
+     "propagation_s": 92.0
+    },
+    {
+     "test_id": "TEST-012",
+     "scenario_code": "MAL-012",
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    }
+   ]
+  }
+ }
+}
