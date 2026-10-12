@@ -88,9 +88,10 @@ def evaluate(tests, truth_events, all_events, per_test):
 
         result = "Pass" if not gaps else "Fail"
         rows.append(dict(
-            test_id=tid, scenario_code=t["scenario_code"], scenario_name=t["scenario_name"],
+            test_id=tid, scenario_code=t["scenario_code"], scenario_name=t["scenario_name"], variant=t["variant"],
             campaign_id=t["campaign_id"], ad_id=t["ad_id"], platform=t["platform"],
-            domain_profile=t["scenario"]["pattern"], benign=t["benign"],
+            domain_profile=t["scenario"]["pattern"], benign=t["benign"], display_domain=t["display_domain"],
+            hop_domains=t["hops"], infra=t["infra"],
             expected_detection=t["expected_detection"], expected_containment=t["expected_containment"],
             expected_redirect_hops=t["expected_hops"], logged_redirect_hops=len(hops),
             actual_detection=detected, actual_containment=contained,
@@ -292,36 +293,56 @@ SEVERITY_METHOD = ("POC convention, not an industry standard. High: an expected 
 
 
 def build_findings(base_rows, retest_rows):
-    retest = {r["test_id"]: r for r in retest_rows}
-    findings, n = [], 0
+    """One finding per (scenario, gap type). A control gap hits every variant of a scenario, so grouping keeps
+    the register readable. Status reflects how many affected journeys are fixed in the retest."""
+    after = {r["test_id"]: r for r in retest_rows}
+    groups = {}
     for r in base_rows:
         for g in r["gaps"]:
-            n += 1
-            title, sev, impact = GAP_INFO[g]
-            after = retest[r["test_id"]]
-            fixed = g not in after["gaps"]
-            findings.append(dict(
-                finding_id=f"FIND-{n:03d}", test_id=r["test_id"], scenario_code=r["scenario_code"],
-                gap_type=g, finding_title=f"{title} ({r['scenario_name']})",
-                description=f"{r['scenario_code']} {r['scenario_name']}: {title.lower()}.",
-                impact=impact, severity=sev, evidence=f"{r['test_id']} (baseline run)",
-                remediation=REMEDIATION.get((g, r["scenario_code"]), "To be confirmed"),
-                status="Remediated (POC scenario)" if fixed else "Open",
-                retest_status="Verified in POC retest" if fixed else "Still failing in retest",
-                baseline_result=r["result"], retest_result=after["result"], data_origin="synthetic"))
+            groups.setdefault((r["scenario_code"], g), []).append(r)
+    findings = []
+    for n, ((code, g), rows) in enumerate(sorted(groups.items()), start=1):
+        title, sev, impact = GAP_INFO[g]
+        still = [r["test_id"] for r in rows if g in after[r["test_id"]]["gaps"]]
+        fixed = len(rows) - len(still)
+        status = "Open" if fixed == 0 else ("Remediated (POC scenario)" if not still else "Partially remediated")
+        retest_status = ("Still failing in retest" if fixed == 0 else
+                         ("Verified in POC retest" if not still else f"{len(still)} of {len(rows)} still failing"))
+        name = rows[0]["scenario_name"]
+        findings.append(dict(
+            finding_id=f"FIND-{n:03d}", scenario_code=code, scenario_name=name, gap_type=g,
+            finding_title=f"{title} ({name})",
+            description=f"{code} {name}: {title.lower()}. Affects {len(rows)} of its journeys in the baseline run.",
+            impact=impact, severity=sev, affected_tests=[r["test_id"] for r in rows], affected_count=len(rows),
+            still_failing_tests=still, test_id=rows[0]["test_id"],
+            evidence=f"{len(rows)} journeys, first {rows[0]['test_id']} (baseline run)",
+            remediation=REMEDIATION.get((g, code), "To be confirmed"),
+            status=status, retest_status=retest_status, data_origin="synthetic"))
     return findings
 
 
 def build_retest(base_rows, retest_rows, findings):
-    fix_by_test = {}
+    """Per scenario before/after summary."""
+    after = {r["test_id"]: r for r in retest_rows}
+    fixes = {}
     for f in findings:
-        fix_by_test.setdefault(f["test_id"], []).append(f["remediation"] if f["status"] != "Open" else None)
-    out = []
-    for b, a in zip(base_rows, retest_rows):
-        snap = lambda r: dict(result=r["result"], detected=r["actual_detection"], contained=r["actual_containment"],
-                              logged_hops=r["logged_redirect_hops"], expected_hops=r["expected_redirect_hops"],
-                              gaps=r["gaps"])
-        out.append(dict(test_id=b["test_id"], scenario_code=b["scenario_code"], scenario_name=b["scenario_name"],
-                        baseline=snap(b), retest=snap(a), changed=b["result"] != a["result"],
-                        fixes_applied=[x for x in fix_by_test.get(b["test_id"], []) if x]))
+        if f["status"] != "Open":
+            fixes.setdefault(f["scenario_code"], []).append(f["remediation"])
+    out, order = [], []
+    for r in base_rows:
+        if r["scenario_code"] not in order:
+            order.append(r["scenario_code"])
+    for code in order:
+        b = [r for r in base_rows if r["scenario_code"] == code]
+        a = [after[r["test_id"]] for r in b]
+        def snap(rows):
+            return dict(journeys=len(rows), passed=sum(1 for r in rows if r["result"] == "Pass"),
+                        failed=sum(1 for r in rows if r["result"] == "Fail"),
+                        detected=sum(1 for r in rows if r["actual_detection"]),
+                        contained=sum(1 for r in rows if r["actual_containment"]),
+                        gaps=sorted({g for r in rows for g in r["gaps"]}))
+        sb, sa = snap(b), snap(a)
+        out.append(dict(scenario_code=code, scenario_name=b[0]["scenario_name"], baseline=sb, retest=sa,
+                        changed=sb["passed"] != sa["passed"], fixes_applied=fixes.get(code, []),
+                        first_test_id=b[0]["test_id"]))
     return out

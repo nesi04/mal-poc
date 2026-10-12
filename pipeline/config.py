@@ -7,7 +7,8 @@ from datetime import datetime, timezone
 
 SEED = 42
 START = datetime(2026, 10, 9, 9, 0, 0, tzinfo=timezone.utc)
-JOURNEY_SPACING_S = 600  # one journey every 10 minutes
+JOURNEY_SPACING_S = 420  # one journey every 7 minutes
+VARIANTS = 8             # journeys generated per scenario
 
 # Synthetic brand (never a real brand)
 BRAND_TOKEN = "contoso"
@@ -22,7 +23,7 @@ PLATFORM_LABEL = "Simulated-Search-Ads"
 
 # Detection rules. latency = simulated seconds from trigger event to detection.
 RULES = {
-    "R1": dict(name="KNOWN_BAD_DESTINATION", severity="High", latency=(2, 2), inline=True,
+    "R1": dict(name="KNOWN_BAD_DESTINATION", severity="High", latency=(1, 1), inline=True,
                auto_contain=False, action="domain_block",
                desc="Destination domain appears in the threat-intel table"),
     "R2": dict(name="FIRST_SEEN_DOMAIN", severity="Medium", latency=(30, 90), inline=False,
@@ -51,21 +52,22 @@ PROFILES = {
         description="Initial control configuration, with the telemetry and rule gaps being tested.",
         enabled_rules={"R1", "R2", "R3", "R4", "R6"},   # R5 not enabled yet
         evaluate_final_destination=False,                # only the first hop destination is evaluated
-        extra_allowlist=set(),
-        dropped_events={("TEST-005", "REDIRECT", 2), ("TEST-008", "LANDING", 0)},
-        unlinked_clicks={"TEST-011"},
-        failed_containments={"TEST-010"},
+        allowlist_tokens=set(),
+        # Control gaps are keyed by scenario, so they affect every variant of that scenario.
+        dropped_events={("MAL-005", "REDIRECT", 2), ("MAL-008", "LANDING", 0)},
+        unlinked_click_scenarios={"MAL-011"},
+        failed_containment_scenarios={"MAL-010"},
     ),
     "retest": dict(
         label="Retest (after simulated fixes)",
         description="Same journeys after: R5 enabled, final-destination evaluation, hop and landing "
-                    "logging repaired, partner domain allow-listed. Two issues are deliberately left open.",
+                    "logging repaired, partner domains allow-listed. Two issues are deliberately left open.",
         enabled_rules=set(ALL_RULES),
         evaluate_final_destination=True,
-        extra_allowlist={"contoso-events.test"},
+        allowlist_tokens={"contoso-events"},
         dropped_events=set(),
-        unlinked_clicks={"TEST-011"},                    # still open
-        failed_containments={"TEST-010"},                # still open
+        unlinked_click_scenarios={"MAL-011"},            # still open
+        failed_containment_scenarios={"MAL-010"},        # still open
     ),
 }
 

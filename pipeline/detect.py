@@ -12,35 +12,36 @@ from datetime import timedelta
 
 from config import (SEED, RULES, BRAND_TOKEN, APPROVED_BRAND_DOMAINS, APPROVED_AUTH_ORIGINS,
                     FIRST_SEEN_DAYS, YOUNG_HOP_DAYS, ANALYSTS)
-from scenarios import REGISTRY, TRUSTED_CATEGORIES
+from scenarios import TRUSTED_CATEGORIES
 
 
 def observe(truth_events, profile):
     """Apply telemetry gaps from the profile. Returns a new list of events (copies)."""
     out = []
     for e in truth_events:
-        key = (e["test_id"], e["event_type"], e["hop_number"] or 0)
+        key = (e["scenario_code"], e["event_type"], e["hop_number"] or 0)
         if key in profile["dropped_events"]:
             continue
         e2 = dict(e, metadata=dict(e["metadata"]))
-        if e["event_type"] == "CLICK" and e["test_id"] in profile["unlinked_clicks"]:
+        if e["event_type"] == "CLICK" and e["scenario_code"] in profile["unlinked_click_scenarios"]:
             e2["metadata"]["impression_id"] = None
         out.append(e2)
     return out
 
 
-def _age(domain):
-    return REGISTRY.get(domain, {}).get("age_days", 9999)
+def _age(domain, reg):
+    return reg.get(domain, {}).get("age_days", 9999)
 
 
-def _trusted(domain):
-    return REGISTRY.get(domain, {}).get("category") in TRUSTED_CATEGORIES
+def _trusted(domain, reg):
+    return reg.get(domain, {}).get("category") in TRUSTED_CATEGORIES
 
 
-def find_hits(evs, profile, intel):
+def find_hits(evs, profile, intel, reg):
     """Return a list of rule hits for one test's observed events."""
     enabled = profile["enabled_rules"]
-    approved = APPROVED_BRAND_DOMAINS | profile["extra_allowlist"]
+    approved = APPROVED_BRAND_DOMAINS
+    tokens = profile["allowlist_tokens"]
     hops = sorted([e for e in evs if e["event_type"] == "REDIRECT"], key=lambda e: e["hop_number"])
     landing = [e for e in evs if e["event_type"] == "LANDING"]
 
@@ -57,14 +58,14 @@ def find_hits(evs, profile, intel):
     for dom, ts in cands:
         if "R1" in enabled and dom in intel:
             hits.append(dict(rule="R1", domain=dom, trigger_ts=ts, detail="domain in threat-intel table"))
-        if "R2" in enabled and _age(dom) < FIRST_SEEN_DAYS and not _trusted(dom) and dom not in approved:
+        if "R2" in enabled and _age(dom, reg) < FIRST_SEEN_DAYS and not _trusted(dom, reg) and dom not in approved:
             hits.append(dict(rule="R2", domain=dom, trigger_ts=ts,
-                             detail=f"domain age {_age(dom)} days (< {FIRST_SEEN_DAYS})"))
-        if "R3" in enabled and BRAND_TOKEN in dom and dom not in approved:
+                             detail=f"domain age {_age(dom, reg)} days (< {FIRST_SEEN_DAYS})"))
+        if "R3" in enabled and BRAND_TOKEN in dom and dom not in approved and not any(tok in dom for tok in tokens):
             hits.append(dict(rule="R3", domain=dom, trigger_ts=ts,
                              detail=f"contains brand token '{BRAND_TOKEN}', not an approved domain"))
     if "R4" in enabled and len(hops) >= 2:
-        young = [h["domain"] for h in hops[:-1] if _age(h["domain"]) < YOUNG_HOP_DAYS and not _trusted(h["domain"])]
+        young = [h["domain"] for h in hops[:-1] if _age(h["domain"], reg) < YOUNG_HOP_DAYS and not _trusted(h["domain"], reg)]
         if young:
             hits.append(dict(rule="R4", domain=young[0], trigger_ts=hops[-1]["timestamp"],
                              detail=f"{len(hops)} hops via young intermediate host {young[0]}"))
@@ -82,7 +83,7 @@ def find_hits(evs, profile, intel):
     return hits
 
 
-def run_blue(tests, observed, profile, intel):
+def run_blue(tests, observed, profile, intel, reg):
     """Returns (events_all, per_test) where per_test[test_id] holds hits/alert/incident/containment."""
     by_test = {}
     for e in observed:
@@ -106,7 +107,7 @@ def run_blue(tests, observed, profile, intel):
         info = dict(hits=[], primary=None, detected=False, inline_blocked=False, alert=None, incident=None,
                     containment=None, legit_blocked=False)
         per_test[tid] = info
-        hits = find_hits(evs, profile, intel)
+        hits = find_hits(evs, profile, intel, reg)
         if not hits:
             continue
 
@@ -134,7 +135,7 @@ def run_blue(tests, observed, profile, intel):
                                 data_origin="synthetic",
                                 metadata=dict(detail=primary["detail"],
                                               all_rules=[h["rule"] for h in hits],
-                                              domain_age_days=_age(primary["domain"]))))
+                                              domain_age_days=_age(primary["domain"], reg))))
 
         alert_n += 1
         alert_id = f"ALERT-{alert_n:03d}"
@@ -180,7 +181,7 @@ def run_blue(tests, observed, profile, intel):
         action = rule["action"]
         target = primary.get("url") if action == "URL_block" and primary.get("url") else primary["domain"]
         cont_n += 1
-        failed = tid in profile["failed_containments"]
+        failed = t["scenario_code"] in profile["failed_containment_scenarios"]
         info["containment"] = dict(containment_id=f"CONT-{cont_n:03d}", incident_id=info["incident"]["incident_id"],
                                    test_id=tid, action=action, requested_at=req_ts,
                                    completed_at=None if failed else eff_ts,
@@ -206,5 +207,8 @@ def run_blue(tests, observed, profile, intel):
                                                   action=action, target=target)))
             info["legit_blocked"] = bool(t["benign"])
 
+    code_of = {t["test_id"]: t["scenario_code"] for t in tests}
+    for e in blue_events:
+        e["scenario_code"] = code_of[e["test_id"]]
     all_events = [e for evs in by_test.values() for e in evs] + blue_events
     return all_events, per_test
