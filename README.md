@@ -2,7 +2,7 @@
 
 A proof of concept that shows how an organization can **measure** whether it can see, detect, investigate and stop a malicious advertising journey, using simulated data.
 
-> **This is a simulation.** No real ads are bought, no real people are targeted, no real malware, passwords or credentials are involved, and no real Microsoft, Bing or Microsoft Sentinel data is used. Every domain is a reserved `.test` name that cannot exist on the internet. The dashboard labels all data as synthetic.
+> **This is a simulation.** No real ads are bought, no real people are targeted, no real malware, passwords or credentials are involved, and no real Microsoft, Bing or Microsoft Sentinel data is used. Every journey domain is a reserved `.test` name that cannot exist on the internet. The dashboard labels all data as synthetic.
 
 ---
 
@@ -19,19 +19,21 @@ Security teams then have to answer practical questions:
 - Did an analyst look at it, and how fast?
 - Did we block it, and how long did the block take to work?
 - Did our blocking accidentally break a legitimate website?
+- Where could one action stop many attacks at once?
 - After we fixed a weakness, does the problem really stay fixed?
 
 ### What this project does
 
 It builds a small, safe, repeatable experiment that answers those questions with numbers:
 
-1. A **red team** (the attacker side) runs 12 controlled test journeys. Each one is a made-up ad journey with a unique ID such as `TEST-001`.
+1. A **red team** (the attacker side) runs **96 controlled journeys**: 12 scenarios, 8 variants of each. Every journey has a unique ID such as `TEST-033`.
 2. A **blue team** (the defender side, called the SOC) only sees what its monitoring would realistically see, runs detection rules, raises alerts, investigates and blocks.
 3. A **metrics engine** compares what the red team did with what the blue team saw, and produces measurements.
-4. A **dashboard** lets you pick any test and replay the whole journey from the ad impression to the final block, and shows where the defenses had gaps.
-5. The tests are then **run a second time after simulated fixes**, to check whether the gaps were closed.
+4. A **choke-point analysis** finds the shared things (an advertiser account, a hosting provider, a detection rule) that many journeys depend on.
+5. A **dashboard** lets you pick any journey and replay it from the ad impression to the final block, and shows where the defenses had gaps.
+6. Everything is **run a second time after simulated fixes**, to check whether the gaps were closed.
 
-The core idea: pick one test ID and reconstruct the entire story.
+The core idea: pick one journey ID and reconstruct the entire story.
 
 ### One journey, start to finish
 
@@ -72,10 +74,13 @@ Block is requested -> block takes effect                        and done)
 | **Containment** | Stopping the threat, for example by blocking a domain. |
 | **False positive** | A legitimate thing wrongly flagged or blocked. |
 | **TTD, TTT, TTC** | Time to detection, time to triage, time to containment. |
-| **Baseline run** | The tests run with the starting configuration, including deliberate weaknesses. |
-| **Retest run** | The same tests run again after simulated fixes. |
+| **Scenario / variant** | A scenario is one attack pattern (MAL-005). A variant is one of its 8 journeys, with different domains, domain ages, timings and sometimes an extra redirect hop. |
+| **Baseline run** | The journeys evaluated with the starting configuration, including deliberate weaknesses. |
+| **Retest run** | The same journeys after simulated fixes. |
 | **Finding** | A recorded weakness, with its impact, severity and fix. |
-| **IOC / threat intel** | A list of already-known bad domains. |
+| **Choke point** | One place many attack journeys pass through (a shared advertiser account, registrar, hosting provider, redirect host family, or a detection rule). One action there stops many journeys at once. |
+| **Collateral damage** | Harm to legitimate traffic that shares the thing you block. |
+| **Threat intel** | A list of already-known bad domains. |
 
 ---
 
@@ -88,14 +93,15 @@ Block is requested -> block takes effect                        and done)
 | Credential and download events | **Synthetic test events.** No password, token or secret is captured and no file is ever executed. |
 | Detection rules | **Real logic** running on the synthetic events. |
 | Detection time, triage time, block time | **Simulated** from fixed ranges. They show how the measurement works, they are not measurements of any real security team. |
-| Metrics and findings | **Calculated** from the synthetic data by the project. |
-| Optional public data | A public list of malicious URLs can be added to the known-bad lookup (see section 9). Without it, everything is synthetic. |
+| Advertiser account, registrar and hosting labels | **Synthetic.** Invented names used only by the choke-point analysis. They change no event, rule or metric. |
+| Metrics, findings, choke points | **Calculated** from the synthetic data by the project. |
+| Optional public malicious-URL list | **Public.** If you supply it, its hostnames extend the known-bad lookup (see section 9). Without it, everything is synthetic. |
 
-Each data row in the dashboard carries a tag (for example "Synthetic") so nothing is mistaken for real production telemetry.
+Each data row in the dashboard carries a tag (for example "Synthetic") so nothing is mistaken for real production telemetry. When a public file is loaded, a "PUBLIC DATA" label appears in the top banner.
 
 ---
 
-## 4. The 12 test scenarios
+## 4. The 12 scenarios and their 8 variants each
 
 Each scenario is modelled on a pattern seen in public malvertising case studies. Two are benign controls that should never be blocked.
 
@@ -104,7 +110,7 @@ Each scenario is modelled on a pattern seen in public malvertising case studies.
 | MAL-001 | Known-bad destination | A domain on the threat-intel list is blocked before the user lands |
 | MAL-002 | First-seen domain | A domain registered only days ago is caught |
 | MAL-003 | Lookalike domain | A hostname imitating a protected brand is caught |
-| MAL-004 | Two-hop redirect via disposable host | A redirect chain through a throwaway host is caught |
+| MAL-004 | Multi-hop redirect via disposable host | A redirect chain through a throwaway host is caught (every other variant adds a third hop) |
 | MAL-005 | Two-hop redirect, second hop unlogged | Detection works, but one hop is missing from the logs |
 | MAL-006 | Ad-to-credential simulation | A fake sign-in page on an unapproved origin (test event only) |
 | MAL-007 | Benign control | A legitimate ad that must not raise an incident |
@@ -114,7 +120,9 @@ Each scenario is modelled on a pattern seen in public malvertising case studies.
 | MAL-011 | Cloaking | A journey that shows scanners a different page than real visitors |
 | MAL-012 | Benign control, partner domain | A legitimate partner domain that must not be blocked |
 
-The catalog is shown on the **Red team scenarios** page.
+**Variants.** Each scenario is generated 8 times. Variants differ in domain names (later variants get a prefix such as `v2.`), domain ages within the range that keeps the scenario meaningful, timings, and the synthetic infrastructure labels.
+
+**Journey IDs.** Journeys are numbered `TEST-001` to `TEST-096`, scenario by scenario. MAL-001 is TEST-001 to TEST-008, MAL-005 is TEST-033 to TEST-040, and so on. In the dashboard you mostly navigate by scenario and variant, so you rarely need the number.
 
 ---
 
@@ -133,23 +141,34 @@ The catalog is shown on the **Red team scenarios** page.
 
 ## 6. Baseline run and retest run
 
-The same 12 journeys are evaluated twice.
+The same 96 journeys are evaluated twice. Control weaknesses are set per scenario, so they affect all 8 variants of that scenario.
 
 **Baseline** has deliberate weaknesses so there is something to find:
 
-| Test | Weakness in the baseline |
+| Scenario | Weakness in the baseline |
 |---|---|
-| TEST-005 | The second redirect hop is missing from the logs |
-| TEST-006 | The credential rule (R5) is switched off, so nothing is detected |
-| TEST-008 | The landing event is lost from the logs |
-| TEST-009 | Only the first hop is checked, so the bad final destination is missed |
-| TEST-012 | The lookalike rule wrongly flags and blocks a legitimate partner domain |
-| TEST-010 | The block does not take effect |
-| TEST-011 | The click is not linked back to its impression |
+| MAL-005 | The second redirect hop is missing from the logs |
+| MAL-006 | The credential rule (R5) is switched off, so nothing is detected |
+| MAL-008 | The landing event is lost from the logs |
+| MAL-009 | Only the first hop is checked, so the bad final destination is missed |
+| MAL-012 | The lookalike rule wrongly flags and blocks a legitimate partner domain |
+| MAL-010 | The block does not take effect |
+| MAL-011 | The click is not linked back to its impression |
 
-**Retest** applies simulated fixes (enable R5, check the final destination, repair logging, allow-list the partner domain). Two problems are **intentionally left open** (TEST-010 and TEST-011) so the dashboard shows that not everything gets fixed at once.
+**Retest** applies simulated fixes (enable R5, check the final destination, repair logging, allow-list the partner domain). Two problems are **intentionally left open** (MAL-010 and MAL-011) so the dashboard shows that not everything gets fixed at once.
 
-What you should see: baseline detection coverage 80%, retest 100%. Baseline passes 5 of 12 tests, retest passes 10 of 12.
+What you should see:
+
+| | Baseline | Retest |
+|---|---|---|
+| Journeys passing | 40 of 96 | 80 of 96 |
+| Detection coverage | 80% (64 of 80) | 100% (80 of 80) |
+| Containment success | 70% | 90% |
+| Redirect inspection | 94.4% | 100% |
+| Legitimate journeys flagged | 8 of 16 | 0 of 16 |
+| Identity protection | 0 of 8 | 8 of 8 |
+
+The numbers are identical on every machine because the random seed is fixed.
 
 ---
 
@@ -166,9 +185,9 @@ What you should see: baseline detection coverage 80%, retest 100%. Baseline pass
 | Blocking propagation | How long from requesting a block until it was actually effective? |
 | Containment success | Of the attack paths, how many were successfully stopped? |
 | Redirect inspection | Of all redirect hops, how many were logged? |
-| Legitimate destinations flagged | Of the legitimate test destinations, how many were wrongly flagged or blocked? |
+| Legitimate destinations flagged | Of the legitimate test journeys, how many were wrongly flagged or blocked? |
 | Identity protection | Of the fake-credential tests, how many were detected? |
-| Evidence completeness | Of the evidence items we should have for each test, how many do we have? (Ten items: campaign, ad, impression, click, redirect, landing, detection, alert, investigation, containment. This is a POC measure, not an industry standard.) |
+| Evidence completeness | Of the evidence items we should have for each journey, how many do we have? (Ten items: campaign, ad, impression, click, redirect, landing, detection, alert, investigation, containment. This is a POC measure, not an industry standard.) |
 | Journey reconstruction | How many journeys can be rebuilt completely from the logs? |
 
 The exact formulas, start points and end points are listed on the **Metrics** page.
@@ -180,55 +199,71 @@ The exact formulas, start points and end points are listed on the **Metrics** pa
 ### Things on every page
 
 - **Banner (top):** states that this is a proof of concept with simulated data and no Microsoft production telemetry.
-- **Run switch (top right):** choose **Baseline** or **Retest**. It changes the data shown on the Overview, Journey explorer, Red vs blue and Metrics pages. The Findings and Red team scenarios pages do not depend on it.
-- **Left menu:** moves between the six pages.
+- **Run switch (top right):** choose **Baseline** or **Retest**. It changes the data on Overview, Journey explorer, Blue team, Red vs blue, Choke points and Metrics. Red team, Findings and retest, and Data sources do not depend on it.
+- **Left menu:** moves between the nine pages.
 
 ### Overview
 
 The landing page. It answers the main question: can we see the journey, detect it and stop it?
 
-- **Summary sentence:** how many attack paths were detected and contained in the selected run, and how many tests passed.
-- **Test results:** one tile per test. A green edge means the test matched what was expected. A red edge means there are gaps, and the tile shows how many. Click a tile to open that journey.
-- **Scorecard:** every metric in one table with Baseline, Retest and Change columns. The column for the run you selected is highlighted. A green change means improved, red means worse. Timing rows are left neutral on purpose, because the set of detected tests differs between runs, so a raw comparison would be misleading.
-- **Needs attention:** the failing tests of the selected run, each with its gaps written in plain language and a link to its journey.
+- **Summary sentence:** how many attack paths were detected and contained in the selected run, and how many of the 96 journeys passed.
+- **Results by scenario:** one tile per scenario. Green means all variants matched what was expected, red means some did not, and each tile shows how many passed. Click a tile to open its first affected journey.
+- **Scorecard:** every metric in one table with Baseline, Retest and Change columns. The column for the run you selected is highlighted. Green means improved and red means worse. Timing rows are left neutral on purpose, because the set of detected journeys differs between runs, so a raw comparison would be misleading.
+- **Scenarios that need attention:** the failing scenarios of the selected run, with their gaps in plain language.
 
 ### Journey explorer
 
-The main feature. Choose any test from the list on the left and rebuild its entire story.
+The main feature. Choose a scenario on the left, open it to see its 8 variants, and pick one to rebuild its entire story.
 
 - **Route diagram:** the red team lane (impression, click, redirect hops, landing, and any test events) runs above the blue team lane (detection, alert, triage, containment). A dotted curve shows the hand-off from what happened to what the defenders did. Reading it:
   - A filled dot means the step was seen in the logs, with its time underneath.
   - A hollow dashed amber dot means the step was expected but is missing. This is a visibility gap.
-  - A small grey dot means that step is not expected for this test (for example, no landing because the user was blocked first).
+  - A small grey dot means that step is not expected for this journey (for example, no landing because the user was blocked first).
   - A filled red dot means something happened that should not have.
-- **Facts:** expected versus actual detection and containment, and how many redirect hops were logged.
-- **Gaps:** the differences, in plain language, or a note that expected and actual match.
-- **Evidence checklist:** the ten evidence items marked captured, missing or not expected.
-- **Stages table:** the same route as a table, with times and notes.
-- **Event log:** every event for the test in order, with seconds elapsed since the impression, which team produced it, the domain, and a data-origin tag.
+- **Facts:** what the ad displays, the redirect path, expected versus actual detection and containment, hops logged, and the synthetic infrastructure labels.
+- **Gaps, evidence checklist, stages table and event log:** the differences in plain language, the ten evidence items, the same route as a table, and every event with seconds elapsed since the impression.
 
-Try **TEST-005** to see a missing hop, **TEST-001** to see a block before landing, and **TEST-012** to see a legitimate site wrongly blocked. Then flip the run switch to Retest and watch them change.
+Try **MAL-005 variant 1** to see a missing hop, **MAL-001** to see a block before landing, and **MAL-012** to see a legitimate site wrongly blocked. Then flip the run switch to Retest and watch them change.
+
+### Red team
+
+What the attacker side planned and ran: counts of scenarios, journeys, campaigns, ads, impressions, clicks, redirect hops, landings, test events and expected outcomes, followed by the scenario catalog (campaign, displayed domain versus real destination, hops, variants, and the real-world pattern each is modelled on). It is the same in both runs.
+
+### Blue team
+
+What the defenders saw and did in the selected run: alerts raised (true and false, by severity), attack paths detected and contained, timings, evidence completeness and open findings. Below that, the gaps (undetected journeys, failed blocks, legitimate journeys flagged) and a filterable table of every alert.
 
 ### Red vs blue
 
-A side-by-side comparison for every test: what the red team planned against what the blue team observed, for detection, containment and redirect hops. Any cell where the two differ is highlighted. The Gap column explains the difference, and the Result column says Pass or Fail. Tick **Show failing tests only** to focus on problems.
+A side-by-side comparison for every journey: what the red team planned against what the blue team observed, for detection, containment and redirect hops. Any cell where the two differ is highlighted, and the Gap column explains it. Filter to failing journeys only, or to one scenario.
+
+### Choke points
+
+Answers: *where would one action stop the most attack journeys, and which single rules are we depending on?*
+
+- **Graph:** attack scenarios on the left, shared infrastructure on the right (advertiser accounts, registrars, hosting providers, redirect host families). Line thickness is the number of journeys. Click any box to trace its connections, and a sentence below explains what you selected. Green boxes are safe to block and are steps in the curve, amber dashed boxes also carry legitimate journeys.
+- **Coverage curve:** how much of the attack surface is cut off as you act on the top choke points one at a time. Only nodes with no legitimate traffic are used, because blocking a node that also carries legitimate journeys causes collateral damage. With the demo data, 3 actions cut off 75% of attack paths and 6 cover all of them.
+- **All choke points table:** each node with the attack paths through it, paths still uncontained in the selected run, and any legitimate journeys it would also hit. A node needs at least 3 attack paths to count. For example, one registrar carries 33 attack paths but also a legitimate journey, so it is listed but not used in the curve.
+- **Detection rules table:** for each rule, whether it is enabled in the selected run, what it detects, which scenarios it is the **only** detector for (a single point of failure), and what it wrongly fires on. In the baseline, R5 is switched off and is the only rule that catches MAL-006, so that row is highlighted.
+
+The infrastructure names are synthetic labels, so the ranking demonstrates the method rather than describing real infrastructure.
 
 ### Findings and retest
 
-- **Finding register:** every weakness found in the baseline run, with severity, impact, the recommended fix, and its status. Open items are listed first. The severity method is stated on the page: it is a POC convention (High means an expected detection or containment did not happen or a legitimate site was blocked, Medium means a visibility gap while detection still worked), not an industry standard.
-- **Before and after:** every test with its baseline result next to its retest result and the fix applied. Seven findings exist in total, five verified fixed in the retest and two still open.
+- **Finding register:** every weakness found in the baseline run, one per scenario and gap type, with the number of journeys affected, severity, impact, the recommended fix and its status. Open items come first. The severity method is stated on the page: it is a POC convention, not an industry standard.
+- **Before and after, by scenario:** each scenario's baseline and retest pass counts and gaps, with the fix applied. Seven findings exist: five verified fixed in the retest and two still open.
 
-A fix is only verified for the specific POC scenario it was tested on. It does not prove the fix works for other journeys.
+A fix is only verified for the scenario it was tested on. It does not prove the fix works for other journeys.
 
 ### Metrics
 
-- **Timing per test:** a bar chart of time to detection, triage and containment for each test in the selected run. A missing bar means the step did not happen.
+- **Timing distribution:** a histogram of the journeys' time to detection, triage, containment or blocking propagation. Use the buttons to switch metric.
 - **Timing statistics:** count, mean, median, minimum and maximum for each timing metric.
-- **Definitions:** every metric, grouped by category, with its formula and the exact start and end events used. Detection, triage and containment times here are simulated.
+- **Median timings by scenario**, and **definitions** of every metric with its formula and the exact start and end events. Detection, triage and containment times are simulated.
 
-### Red team scenarios
+### Data sources
 
-The catalog of all 12 tests: campaign, ad title, the domain the ad displays, the domain it really lands on, the number of hops, whether detection is expected, and the real-world pattern the scenario is modelled on. When the displayed domain differs from the final domain, the page points it out.
+Shows what is loaded: the synthetic journeys, the optional public dataset, and the calculated metrics. If a public file is loaded you see its layout, row counts per class and a defanged sample of hostnames. If not, you see how to add one. A **lookup box** checks any domain against the threat-intel table (synthetic entries plus any public hostnames). The page also explains that journey domains are `.test` names, so none match a public hostname by design, and public data only extends the known-bad list used by rule R1.
 
 ---
 
@@ -247,11 +282,16 @@ npm install
 npm run dev                     # then open http://localhost:5173
 ```
 
-The pipeline prints a summary of both runs in the terminal. It always produces the same output because the random seed is fixed.
+The pipeline prints a summary of both runs in the terminal. If the project sits inside OneDrive, pause syncing or move it before `npm install`, because `node_modules` has thousands of small files.
 
 To change anything in `pipeline/`, rerun the pipeline and refresh the browser. `npm run pipeline` does the same from the project root.
 
-**Optional public data:** put a malicious-URL list (for example the Kaggle "Malicious URLs" dataset, with columns `url` and `type`) at `pipeline/data/public/malicious_urls.csv`. Phishing and malware hostnames from it are added to the known-bad lookup and tagged as public data. The test journeys themselves stay synthetic.
+**Optional public data:** save a malicious-URL list as `pipeline/data/public/malicious_urls.csv`, then rerun the pipeline. Two layouts are recognised:
+
+- columns `url,type` (for example the Kaggle "Malicious URLs Dataset"), where `phishing` and `malware` rows are used, or
+- the PhiUSIIL layout `URL,label`, where label 0 means phishing and 1 means legitimate.
+
+Up to 500 phishing and malware hostnames are added to the known-bad lookup. The Data sources page then shows the counts, and the banner shows "PUBLIC DATA".
 
 **To publish a copy:** `npm run build` creates a static `dist/` folder. It can be hosted anywhere static files are served, including Vercel.
 
@@ -265,36 +305,56 @@ malvertising-poc/
 ├── src/                                       The React dashboard
 │   ├── App.jsx                                Layout, menu, run switch, banner
 │   ├── pages/                                 One file per page
-│   ├── components/                            Route diagram and tags
+│   ├── components/                            Route diagram, choke-point graph, tags
 │   ├── lib/                                   Data loading and formatting
 │   └── styles.css
 ├── public/data/                               JSON files the dashboard reads (generated)
 └── pipeline/                                  The Python simulation
-    ├── config.py                              Rules, timing ranges, baseline and retest settings
-    ├── scenarios.py                           The 12 scenarios, domain registry, threat-intel seed
-    ├── generate.py                            Red team: creates the journeys
+    ├── config.py                              Rules, timing ranges, variants, baseline and retest settings
+    ├── scenarios.py                           The 12 scenarios, hop specs, infrastructure labels
+    ├── generate.py                            Red team: creates the 96 journeys
     ├── detect.py                              Blue team: rules, alerts, triage, containment
     ├── metrics.py                             Results, metrics, findings, retest comparison
+    ├── chokepoints.py                         Shared-infrastructure and rule-dependency analysis
     ├── run_pipeline.py                        Runs everything and writes the output files
-    └── out/csv/                               The same data as spreadsheets-friendly CSV files
+    └── out/csv/                               The same data as spreadsheet-friendly CSV files
 ```
 
 The flow of data is:
 
 ```
 scenarios.py  ->  generate.py  ->  detect.py  ->  metrics.py  ->  JSON/CSV files  ->  dashboard
- (what to test)   (red events)    (blue view)     (measurements)
+ (what to test)   (red events)    (blue view)     chokepoints.py
 ```
 
-The blue side never reads the planned outcomes. It only sees the events that remain after the telemetry gaps are applied, which is what keeps the comparison honest.
+The blue side never reads the planned outcomes. It only sees the events that remain after the telemetry gaps are applied, which keeps the comparison honest.
+
+### Data files the dashboard reads (`public/data/`)
+
+| File | Contents |
+|---|---|
+| `meta.json` | Title, labels, run descriptions, assumptions, rule list, severity method |
+| `metrics.json` | Metric definitions, plus KPIs and per-journey timings for each run |
+| `test_cases.json` | One row per journey and run: expected vs actual, gaps, result, evidence, timings, infrastructure |
+| `journeys.json` | Per journey and run: ordered stages, event log and evidence checklist |
+| `findings.json` | The finding register (one per scenario and gap) with remediation and retest status |
+| `retest.json` | Before and after summary per scenario, with the fixes applied |
+| `scenarios.json` | The scenario catalog |
+| `chokepoints.json` | Choke-point nodes, edges, coverage curve, and rule dependencies per run |
+| `views.json` | Red team counts and Blue team alert lists |
+| `data_sources.json`, `intel_public.json` | Public-data status and the lookup list |
+
+Every record carries a `data_origin` (`synthetic` or `public`). Metrics are calculated from those records.
 
 ---
 
 ## 11. Changing or extending it
 
-- **Add or edit a scenario:** change the list in `pipeline/scenarios.py` (hops, benign or not, credential or download test, cloaking), add any new domain to the registry in the same file, and rerun the pipeline.
+- **Add or edit a scenario:** change the list in `pipeline/scenarios.py` (hop specs, benign or not, credential or download test, cloaking), add its infrastructure labels to the `INFRA` table in the same file, and rerun the pipeline.
+- **Change how many journeys:** set `VARIANTS` in `pipeline/config.py`.
 - **Change a rule or a timing range:** edit `pipeline/config.py`.
-- **Change which weaknesses exist:** edit the `baseline` and `retest` profiles in `pipeline/config.py`. They are keyed by test ID, so if you add scenarios, review them.
+- **Change which weaknesses exist:** edit the `baseline` and `retest` profiles in `pipeline/config.py`. They are keyed by scenario code.
+- **Change the choke-point groupings:** edit the `INFRA` table and `INFRA_POOLS` in `pipeline/scenarios.py`.
 - **Add a dashboard page:** add a file in `src/pages/`, then register it in `src/App.jsx`.
 
 ---
@@ -302,11 +362,14 @@ The blue side never reads the planned outcomes. It only sees the events that rem
 ## 12. Honest limits
 
 - All timings come from a simulation model. Do not present them as real response times.
-- Only two benign controls exist, so the false-positive figure is illustrative, not statistical.
-- Twelve tests are enough to demonstrate the method, not to draw conclusions about any real organization.
+- Variants differ in domains, ages, timings, hop counts and infrastructure labels, but control gaps apply to a whole scenario, so failures cluster by scenario. This is deliberate and mirrors a misconfigured control, but it is not a random sample of real traffic.
+- Only 16 benign journeys exist, from two benign scenarios, so the false-positive figure is illustrative, not statistical.
+- 96 journeys are enough to demonstrate the method, not to draw conclusions about any real organization.
 - No real ad platform, SIEM, endpoint product or proxy is used. Any claim about a specific vendor product has to come from somewhere else.
 - A retest only shows that a fix works for the scenario tested.
+- Choke-point rankings depend on invented infrastructure labels, so treat them as a demonstration of the method.
 - Evidence completeness and the severity scale are conventions defined for this POC.
+- The public dataset is optional and is not bundled. Its contents, licence and freshness are whatever you download.
 
 ---
 
@@ -314,10 +377,14 @@ The blue side never reads the planned outcomes. It only sees the events that rem
 
 **Is this a real attack?** No. Nothing leaves your computer and nothing real is targeted.
 
-**Where does the data come from?** The pipeline generates it. Optionally, a public malicious-URL list can enrich the known-bad lookup.
+**Where does the data come from?** The pipeline generates it. Optionally, a public malicious-URL list can extend the known-bad lookup.
 
-**Why do the tests keep failing in the baseline?** Because the baseline contains deliberate weaknesses so the findings and retest have something to show.
+**Why do so many journeys fail in the baseline?** Because the baseline contains deliberate weaknesses so the findings and retest have something to show, and each weakness hits every variant of its scenario.
 
-**Why do some numbers look the same between runs?** Click to landing is one example: fixing missing logs raises it, but better detection blocks one more journey before landing, which lowers it. The scorecard shows the breakdown.
+**Why is click to landing the same in both runs?** Fixing missing logs raises it, but better detection blocks more journeys before landing, which lowers it. The two effects cancel at 83.3%. The scorecard shows the breakdown.
+
+**What is a choke point, and why does the dashboard show them?** It is one shared thing (such as an advertiser account or a detection rule) that many journeys depend on. Stopping or protecting it has the biggest effect for the least effort, so it tells you where to act first.
+
+**Why are some choke points not in the curve?** They also carry legitimate journeys, so blocking them wholesale would cause collateral damage.
 
 **Can I trust the numbers for a real security team?** Use them to demonstrate how to measure, not as benchmarks.

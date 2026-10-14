@@ -136,12 +136,20 @@ td > .tag:first-child, th > .tag:first-child { margin-left: 0; }
 
 /* ---------- journey explorer ---------- */
 .split { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 1.5rem; margin-top: 1rem; align-items: start; }
-.picker ul { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-.pick { display: grid; grid-template-columns: 12px auto; column-gap: 0.55rem; padding: 0.55rem 0.8rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-soft); }
+.picker { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; max-height: 78vh; overflow-y: auto; }
+.picker details { border-bottom: 1px solid var(--line-soft); }
+.picker details:last-child { border-bottom: 0; }
+.picker summary { display: grid; grid-template-columns: 12px auto; column-gap: 0.55rem; padding: 0.55rem 0.8rem; cursor: pointer; list-style: none; }
+.picker summary::-webkit-details-marker { display: none; }
+.picker summary:hover { background: var(--ground); }
+.picker details[open] > summary { background: var(--blue-bg); }
+.picker ul { list-style: none; margin: 0; padding: 0.2rem 0 0.4rem; background: var(--surface); }
+.pick { display: grid; grid-template-columns: 12px auto; column-gap: 0.55rem; padding: 0.3rem 0.8rem 0.3rem 1.6rem; color: var(--ink); text-decoration: none; }
 .pick:hover { background: var(--ground); }
 .pick.active { background: var(--blue-bg); box-shadow: inset 3px 0 0 var(--blue); }
 .pick-id { font-weight: 600; font-size: 0.85rem; }
-.pick-name { grid-column: 2; font-size: 0.82rem; color: var(--muted); }
+.pick-name { grid-column: 2; font-size: 0.8rem; color: var(--muted); }
+.pick-count { grid-column: 2; font-size: 0.78rem; color: var(--muted); }
 .dot { width: 10px; height: 10px; border-radius: 50%; align-self: center; }
 .dot-pass { background: var(--ok); }
 .dot-fail { background: var(--bad); }
@@ -210,8 +218,7 @@ td > .tag:first-child, th > .tag:first-child { margin-left: 0; }
   .side a.active { box-shadow: none; }
   .main { padding: 1.2rem 1rem 3rem; }
   .split { grid-template-columns: 1fr; }
-  .picker ul { display: flex; overflow-x: auto; }
-  .pick { min-width: 150px; border-bottom: 0; border-right: 1px solid var(--line-soft); }
+  .picker { max-height: 280px; }
   .facts { grid-template-columns: 1fr; }
   .defs > div { grid-template-columns: 1fr; gap: 0.1rem; }
   h1 { font-size: 1.55rem; }
@@ -220,3 +227,68 @@ td > .tag:first-child, th > .tag:first-child { margin-left: 0; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- choke points ---------- */
+.steps { margin: 0.8rem 0 0.4rem; padding-left: 1.3rem; max-width: 80ch; }
+.steps li { margin: 0.25rem 0; }
+.warn { color: var(--bad); font-weight: 600; }
+.val-inline { font-weight: 600; }
+.cell-warn { background: var(--gap-bg); }
+.cell-warn .sub { color: #8a5a10; }
+.row-risk th, .row-risk td { background: var(--bad-bg); }
+.notes { max-width: 80ch; margin: 0 0 1rem; padding-left: 1.2rem; font-size: 0.9rem; color: var(--muted); }
+.notes li { margin: 0.2rem 0; }
+
+/* ---------- filters, summary, panels ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.4rem 0 0.8rem; }
+.filters .check { margin: 0; }
+.select { display: inline-flex; gap: 0.5rem; align-items: center; font-size: 0.92rem; }
+select, input[type='text'] { font: inherit; padding: 0.35rem 0.55rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); }
+.scroll-y { max-height: 520px; overflow-y: auto; }
+.scroll-y thead th { position: sticky; top: 0; z-index: 1; }
+
+.summary { margin: 0.6rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.summary > div { padding: 0.6rem 0.8rem 0.6rem 0; border-bottom: 1px solid var(--line-soft); }
+.summary dt { color: var(--muted); font-size: 0.82rem; }
+.summary dd { margin: 0.1rem 0 0; font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
+.summary dd .sub { font-family: var(--text); font-size: 0.8rem; }
+
+.seg-toggle { display: inline-flex; flex-wrap: wrap; gap: 0.15rem; border: 1px solid var(--line); border-radius: 6px; padding: 0.15rem; background: var(--surface); margin-bottom: 0.7rem; }
+.seg-toggle button { font: inherit; font-size: 0.88rem; border: 0; background: transparent; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; color: var(--ink); }
+.seg-toggle button.on { background: var(--ink); color: #fff; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 4px; padding: 0.8rem 1.1rem; max-width: 78ch; }
+.panel h3 { margin-top: 0; }
+.panel ol { margin: 0.3rem 0 0.4rem 1.1rem; padding: 0; }
+.panel li { margin: 0.25rem 0; }
+
+.lookup { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.lookup label { font-weight: 600; font-size: 0.92rem; }
+.lookup input { min-width: min(100%, 340px); }
+.lookup-result { font-weight: 600; min-height: 1.5em; margin-top: 0.5rem; }
+
+/* ---------- choke point graph ---------- */
+.graph-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem; }
+.cgraph { display: block; }
+.gedge { fill: none; stroke: #aab2be; opacity: 0.5; stroke-linecap: round; }
+.gedge.on { stroke: var(--blue); opacity: 0.9; }
+.gedge.dim { opacity: 0.08; }
+.ghead { font-family: var(--display); font-weight: 700; font-size: 13px; fill: var(--muted); }
+.gnode { cursor: pointer; }
+.gnode rect { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
+.gnode:hover rect { fill: #fafbfc; }
+.gnode.sel rect { fill: var(--blue-bg); stroke: var(--blue); stroke-width: 2.5; }
+.gnode.dim { opacity: 0.3; }
+.gnode:focus-visible rect { stroke: var(--blue); stroke-width: 3; }
+.gnode:focus-visible { outline: none; }
+.gright.step rect { stroke: var(--ok); stroke-width: 2.5; }
+.gright.unsafe rect { stroke: var(--gap); stroke-width: 2; stroke-dasharray: 5 3; }
+.gcode { font-size: 12.5px; font-weight: 600; fill: var(--ink); }
+.gname { font-size: 11px; fill: var(--muted); }
+.gcount { font-size: 12px; fill: var(--muted); font-weight: 600; }
+.gbadge { fill: var(--ok); }
+.gbadge-t { font-size: 11px; font-weight: 700; fill: #fff; }
+.sw-gsafe { background: #fff; border: 3px solid var(--ok); }
+.sw-gunsafe { background: #fff; border: 2px dashed var(--gap); }
+.sw-gidle { background: #fff; border: 2px solid var(--line); }
+.graph-detail { margin-top: 0.7rem; padding: 0.6rem 0.9rem; background: var(--blue-bg); border-radius: 4px; max-width: 90ch; min-height: 3em; }

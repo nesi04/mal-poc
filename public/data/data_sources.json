@@ -1,0 +1,38 @@
+{
+ "public": {
+  "loaded": false,
+  "file": "pipeline/data/public/malicious_urls.csv",
+  "schema": null,
+  "rows_read": 0,
+  "class_counts": {},
+  "hostnames_used": 0,
+  "hostname_limit": 500,
+  "notes": [
+   "File not found. Only synthetic threat-intel entries are used."
+  ]
+ },
+ "synthetic_intel": [
+  "docs-share-review.test",
+  "secure-docs-verify.test",
+  "v2.docs-share-review.test",
+  "v2.secure-docs-verify.test",
+  "v3.docs-share-review.test",
+  "v3.secure-docs-verify.test",
+  "v4.docs-share-review.test",
+  "v4.secure-docs-verify.test",
+  "v5.docs-share-review.test",
+  "v5.secure-docs-verify.test",
+  "v6.docs-share-review.test",
+  "v6.secure-docs-verify.test",
+  "v7.docs-share-review.test",
+  "v7.secure-docs-verify.test",
+  "v8.docs-share-review.test",
+  "v8.secure-docs-verify.test"
+ ],
+ "sample_defanged": [],
+ "intel_total": 16,
+ "intel_synthetic": 16,
+ "intel_public": 0,
+ "journey_domains": 130,
+ "note": "Journey domains are reserved .test names, so no journey matches a public hostname by design. Public hostnames only extend the known-bad lookup used by rule R1."
+}

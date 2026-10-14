@@ -16,3 +16,20 @@ export const GAP_TEXT = {
 }
 
 export const yesNo = (v) => (v ? 'Yes' : 'No')
+
+export function groupByScenario(ids, codeOf) {
+  const m = new Map()
+  for (const id of ids) {
+    const c = codeOf[id]
+    if (!m.has(c)) m.set(c, [])
+    m.get(c).push(id)
+  }
+  return [...m.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([code, list]) => ({ code, ids: list }))
+}
+
+export const median = (arr) => {
+  const v = arr.filter((x) => x != null).sort((a, b) => a - b)
+  if (!v.length) return null
+  const m = Math.floor(v.length / 2)
+  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2
+}

@@ -1,7 +1,7 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useData } from '../lib/data.jsx'
 import { fmtSec, GAP_TEXT } from '../lib/format.js'
-import { ResultTag } from '../components/Tags.jsx'
 
 const pct = (v) => (v == null ? 'n/a' : `${v}%`)
 
@@ -54,28 +54,44 @@ export default function Overview() {
   const km = data.metrics.runs
   const k = km[run].kpis
   const rows = data.test_cases[run]
-  const failing = rows.filter((r) => r.result === 'Fail')
+  const groups = useMemo(() => {
+    const m = new Map()
+    rows.forEach((r) => {
+      if (!m.has(r.scenario_code)) m.set(r.scenario_code, [])
+      m.get(r.scenario_code).push(r)
+    })
+    return [...m.values()].map((rs) => {
+      const failed = rs.filter((r) => r.result === 'Fail')
+      return {
+        code: rs[0].scenario_code, name: rs[0].scenario_name, total: rs.length, failed: failed.length,
+        passed: rs.length - failed.length, first: (failed[0] || rs[0]).test_id,
+        gaps: [...new Set(failed.flatMap((r) => r.gaps))],
+      }
+    })
+  }, [rows])
+  const failing = groups.filter((g) => g.failed > 0)
   const runInfo = data.meta.runs[run]
-  const groups = [...new Set(ROWS.map((r) => r.group))]
+  const metricGroups = [...new Set(ROWS.map((r) => r.group))]
 
   return (
     <>
       <h1>Can we see the journey, detect it and stop it?</h1>
       <p className="lede">
         In the {runInfo.label.toLowerCase()} run, {k.detection_coverage.num} of {k.detection_coverage.den} attack paths
-        were detected and {k.containment_success.num} were contained. {k.totals.pass_} of {k.totals.tests} tests passed.
+        were detected and {k.containment_success.num} were contained. {k.totals.pass_} of {k.totals.tests} journeys
+        passed, across {groups.length} scenarios.
       </p>
       <p className="muted small">{runInfo.description}</p>
 
       <section aria-labelledby="tests-h">
-        <h2 id="tests-h">Test results</h2>
+        <h2 id="tests-h">Results by scenario</h2>
         <ul className="tiles">
-          {rows.map((r) => (
-            <li key={r.test_id}>
-              <Link to={`/journeys/${r.test_id}`} className={`tile ${r.result === 'Pass' ? 'tile-pass' : 'tile-fail'}`}>
-                <span className="tile-code">{r.scenario_code}</span>
-                <span className="tile-name">{r.scenario_name}</span>
-                <span className="tile-res">{r.result === 'Pass' ? 'Pass' : `${r.gaps.length} gap${r.gaps.length === 1 ? '' : 's'}`}</span>
+          {groups.map((g) => (
+            <li key={g.code}>
+              <Link to={`/journeys/${g.first}`} className={`tile ${g.failed === 0 ? 'tile-pass' : 'tile-fail'}`}>
+                <span className="tile-code">{g.code}</span>
+                <span className="tile-name">{g.name}</span>
+                <span className="tile-res">{g.passed} of {g.total} pass</span>
               </Link>
             </li>
           ))}
@@ -94,7 +110,7 @@ export default function Overview() {
                 <th scope="col">Change</th>
               </tr>
             </thead>
-            {groups.map((g) => (
+            {metricGroups.map((g) => (
               <tbody key={g}>
                 <tr className="group-row"><th colSpan={4} scope="colgroup">{g}</th></tr>
                 {ROWS.filter((r) => r.group === g).map((r) => {
@@ -127,21 +143,21 @@ export default function Overview() {
       </section>
 
       <section aria-labelledby="attn-h">
-        <h2 id="attn-h">Needs attention in this run</h2>
+        <h2 id="attn-h">Scenarios that need attention in this run</h2>
         {failing.length === 0 ? (
-          <p>Every test in this run matched its expected outcome.</p>
+          <p>Every journey in this run matched its expected outcome.</p>
         ) : (
           <ul className="attn">
-            {failing.map((r) => (
-              <li key={r.test_id}>
+            {failing.map((g) => (
+              <li key={g.code}>
                 <div>
-                  <strong>{r.scenario_code} {r.scenario_name}</strong>
-                  <ResultTag result={r.result} />
+                  <strong>{g.code} {g.name}</strong>
+                  <span className="tag tag-fail">{g.failed} of {g.total} journeys</span>
                 </div>
                 <ul>
-                  {r.gaps.map((g) => <li key={g}>{GAP_TEXT[g]}</li>)}
+                  {g.gaps.map((x) => <li key={x}>{GAP_TEXT[x]}</li>)}
                 </ul>
-                <Link to={`/journeys/${r.test_id}`}>Open journey</Link>
+                <Link to={`/journeys/${g.first}`}>Open the first affected journey</Link>
               </li>
             ))}
           </ul>

@@ -5,15 +5,21 @@ import Journeys from './pages/Journeys.jsx'
 import Compare from './pages/Compare.jsx'
 import Findings from './pages/Findings.jsx'
 import Metrics from './pages/Metrics.jsx'
-import Scenarios from './pages/Scenarios.jsx'
+import RedTeam from './pages/RedTeam.jsx'
+import BlueTeam from './pages/BlueTeam.jsx'
+import DataSources from './pages/DataSources.jsx'
+import ChokePoints from './pages/ChokePoints.jsx'
 
 const NAV = [
   ['/', 'Overview'],
   ['/journeys', 'Journey explorer'],
+  ['/red-team', 'Red team'],
+  ['/blue-team', 'Blue team'],
   ['/compare', 'Red vs blue'],
+  ['/choke-points', 'Choke points'],
   ['/findings', 'Findings and retest'],
   ['/metrics', 'Metrics'],
-  ['/scenarios', 'Red team scenarios'],
+  ['/data-sources', 'Data sources'],
 ]
 
 function Shell() {
@@ -41,7 +47,7 @@ function Shell() {
       <header className="top">
         <div>
           <p className="brand">{data.meta.title}</p>
-          <p className="muted small">{data.meta.subtitle}. Public and synthetic data.</p>
+          <p className="muted small">{data.meta.subtitle}. {data.meta.labels.includes('PUBLIC DATA') ? 'Public and synthetic data' : 'Synthetic data'}, {data.meta.journeys} journeys.</p>
         </div>
         <fieldset className="runswitch">
           <legend>Run shown</legend>
@@ -67,9 +73,12 @@ function Shell() {
             <Route path="/journeys" element={<Journeys />} />
             <Route path="/journeys/:testId" element={<Journeys />} />
             <Route path="/compare" element={<Compare />} />
+            <Route path="/choke-points" element={<ChokePoints />} />
             <Route path="/findings" element={<Findings />} />
             <Route path="/metrics" element={<Metrics />} />
-            <Route path="/scenarios" element={<Scenarios />} />
+            <Route path="/red-team" element={<RedTeam />} />
+            <Route path="/blue-team" element={<BlueTeam />} />
+            <Route path="/data-sources" element={<DataSources />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-const FILES = ['meta', 'metrics', 'test_cases', 'journeys', 'findings', 'retest', 'scenarios']
+const FILES = ['meta', 'metrics', 'test_cases', 'journeys', 'findings', 'retest', 'scenarios', 'chokepoints', 'views', 'data_sources']
 const Ctx = createContext(null)
 
 export function DataProvider({ children }) {
@@ -25,3 +25,9 @@ export function DataProvider({ children }) {
 }
 
 export const useData = () => useContext(Ctx)
+
+// test_id -> scenario code, used to show many journeys as "MAL-001 x8" instead of long lists
+export function useCodeOf() {
+  const { data } = useData()
+  return useMemo(() => Object.fromEntries(data.test_cases.baseline.map((r) => [r.test_id, r.scenario_code])), [data])
+}

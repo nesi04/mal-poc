@@ -1,0 +1,2174 @@
+{
+ "attack_total": 80,
+ "attack_scenarios": [
+  "MAL-001",
+  "MAL-002",
+  "MAL-003",
+  "MAL-004",
+  "MAL-005",
+  "MAL-006",
+  "MAL-008",
+  "MAL-009",
+  "MAL-010",
+  "MAL-011"
+ ],
+ "nodes": [
+  {
+   "id": "registrar:Registrar-Gamma",
+   "type": "registrar",
+   "type_label": "Registrar",
+   "name": "Registrar-Gamma",
+   "action": "Request takedown of the domains at this registrar",
+   "attack": [
+    "TEST-002",
+    "TEST-003",
+    "TEST-004",
+    "TEST-008",
+    "TEST-015",
+    "TEST-018",
+    "TEST-020",
+    "TEST-024",
+    "TEST-025",
+    "TEST-027",
+    "TEST-028",
+    "TEST-029",
+    "TEST-030",
+    "TEST-032",
+    "TEST-033",
+    "TEST-034",
+    "TEST-036",
+    "TEST-037",
+    "TEST-039",
+    "TEST-040",
+    "TEST-044",
+    "TEST-057",
+    "TEST-058",
+    "TEST-060",
+    "TEST-061",
+    "TEST-062",
+    "TEST-063",
+    "TEST-068",
+    "TEST-077",
+    "TEST-081",
+    "TEST-082",
+    "TEST-084",
+    "TEST-086"
+   ],
+   "benign": [
+    "TEST-092"
+   ],
+   "attack_count": 33,
+   "attack_share": 41.2,
+   "by_scenario": {
+    "MAL-001": 4,
+    "MAL-002": 1,
+    "MAL-003": 3,
+    "MAL-004": 6,
+    "MAL-005": 6,
+    "MAL-006": 1,
+    "MAL-008": 6,
+    "MAL-009": 1,
+    "MAL-010": 1,
+    "MAL-011": 4
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 30,
+     "uncontained": 3,
+     "uncontained_tests": [
+      "TEST-044",
+      "TEST-068",
+      "TEST-077"
+     ]
+    },
+    "retest": {
+     "contained": 32,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-077"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "hosting:Host-Net-3",
+   "type": "hosting",
+   "type_label": "Hosting provider",
+   "name": "Host-Net-3",
+   "action": "Block the hosting range at the proxy and DNS layer",
+   "attack": [
+    "TEST-034",
+    "TEST-041",
+    "TEST-042",
+    "TEST-043",
+    "TEST-045",
+    "TEST-046",
+    "TEST-047",
+    "TEST-048",
+    "TEST-057",
+    "TEST-061",
+    "TEST-062",
+    "TEST-063",
+    "TEST-064",
+    "TEST-065",
+    "TEST-066",
+    "TEST-067",
+    "TEST-068",
+    "TEST-070",
+    "TEST-071",
+    "TEST-072",
+    "TEST-080",
+    "TEST-081",
+    "TEST-082",
+    "TEST-083",
+    "TEST-085",
+    "TEST-087",
+    "TEST-088"
+   ],
+   "benign": [
+    "TEST-051",
+    "TEST-056",
+    "TEST-094"
+   ],
+   "attack_count": 27,
+   "attack_share": 33.8,
+   "by_scenario": {
+    "MAL-005": 1,
+    "MAL-006": 7,
+    "MAL-008": 5,
+    "MAL-009": 7,
+    "MAL-010": 1,
+    "MAL-011": 6
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 12,
+     "uncontained": 15,
+     "uncontained_tests": [
+      "TEST-041",
+      "TEST-042",
+      "TEST-043",
+      "TEST-045",
+      "TEST-046",
+      "TEST-047",
+      "TEST-048",
+      "TEST-065",
+      "TEST-066",
+      "TEST-067",
+      "TEST-068",
+      "TEST-070",
+      "TEST-071",
+      "TEST-072",
+      "TEST-080"
+     ]
+    },
+    "retest": {
+     "contained": 26,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-080"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "hosting:Host-Net-1",
+   "type": "hosting",
+   "type_label": "Hosting provider",
+   "name": "Host-Net-1",
+   "action": "Block the hosting range at the proxy and DNS layer",
+   "attack": [
+    "TEST-001",
+    "TEST-002",
+    "TEST-003",
+    "TEST-004",
+    "TEST-005",
+    "TEST-006",
+    "TEST-007",
+    "TEST-008",
+    "TEST-009",
+    "TEST-010",
+    "TEST-012",
+    "TEST-013",
+    "TEST-014",
+    "TEST-015",
+    "TEST-016",
+    "TEST-023",
+    "TEST-038",
+    "TEST-040",
+    "TEST-073",
+    "TEST-075",
+    "TEST-076",
+    "TEST-077",
+    "TEST-078",
+    "TEST-079",
+    "TEST-084"
+   ],
+   "benign": [
+    "TEST-052",
+    "TEST-053",
+    "TEST-091"
+   ],
+   "attack_count": 25,
+   "attack_share": 31.2,
+   "by_scenario": {
+    "MAL-001": 8,
+    "MAL-002": 7,
+    "MAL-003": 1,
+    "MAL-005": 2,
+    "MAL-010": 6,
+    "MAL-011": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 19,
+     "uncontained": 6,
+     "uncontained_tests": [
+      "TEST-073",
+      "TEST-075",
+      "TEST-076",
+      "TEST-077",
+      "TEST-078",
+      "TEST-079"
+     ]
+    },
+    "retest": {
+     "contained": 19,
+     "uncontained": 6,
+     "uncontained_tests": [
+      "TEST-073",
+      "TEST-075",
+      "TEST-076",
+      "TEST-077",
+      "TEST-078",
+      "TEST-079"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "ad_account:ACCT-A",
+   "type": "ad_account",
+   "type_label": "Advertiser account",
+   "name": "ACCT-A",
+   "action": "Suspend the advertiser account",
+   "attack": [
+    "TEST-001",
+    "TEST-003",
+    "TEST-004",
+    "TEST-005",
+    "TEST-006",
+    "TEST-007",
+    "TEST-008",
+    "TEST-009",
+    "TEST-010",
+    "TEST-011",
+    "TEST-012",
+    "TEST-013",
+    "TEST-014",
+    "TEST-015",
+    "TEST-016",
+    "TEST-030",
+    "TEST-070",
+    "TEST-071",
+    "TEST-073",
+    "TEST-074",
+    "TEST-077",
+    "TEST-078",
+    "TEST-079",
+    "TEST-080"
+   ],
+   "benign": [],
+   "attack_count": 24,
+   "attack_share": 30.0,
+   "by_scenario": {
+    "MAL-001": 7,
+    "MAL-002": 8,
+    "MAL-004": 1,
+    "MAL-009": 2,
+    "MAL-010": 6
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 16,
+     "uncontained": 8,
+     "uncontained_tests": [
+      "TEST-070",
+      "TEST-071",
+      "TEST-073",
+      "TEST-074",
+      "TEST-077",
+      "TEST-078",
+      "TEST-079",
+      "TEST-080"
+     ]
+    },
+    "retest": {
+     "contained": 18,
+     "uncontained": 6,
+     "uncontained_tests": [
+      "TEST-073",
+      "TEST-074",
+      "TEST-077",
+      "TEST-078",
+      "TEST-079",
+      "TEST-080"
+     ]
+    }
+   },
+   "safe": true,
+   "curve_step": 1
+  },
+  {
+   "id": "hosting:Host-Net-2",
+   "type": "hosting",
+   "type_label": "Hosting provider",
+   "name": "Host-Net-2",
+   "action": "Block the hosting range at the proxy and DNS layer",
+   "attack": [
+    "TEST-017",
+    "TEST-018",
+    "TEST-019",
+    "TEST-020",
+    "TEST-021",
+    "TEST-022",
+    "TEST-024",
+    "TEST-025",
+    "TEST-026",
+    "TEST-027",
+    "TEST-028",
+    "TEST-029",
+    "TEST-030",
+    "TEST-031",
+    "TEST-032",
+    "TEST-033",
+    "TEST-035",
+    "TEST-036",
+    "TEST-037",
+    "TEST-039",
+    "TEST-059",
+    "TEST-069",
+    "TEST-074"
+   ],
+   "benign": [
+    "TEST-089",
+    "TEST-090",
+    "TEST-092",
+    "TEST-093",
+    "TEST-095",
+    "TEST-096"
+   ],
+   "attack_count": 23,
+   "attack_share": 28.8,
+   "by_scenario": {
+    "MAL-003": 7,
+    "MAL-004": 8,
+    "MAL-005": 5,
+    "MAL-008": 1,
+    "MAL-009": 1,
+    "MAL-010": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 21,
+     "uncontained": 2,
+     "uncontained_tests": [
+      "TEST-069",
+      "TEST-074"
+     ]
+    },
+    "retest": {
+     "contained": 22,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-074"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "ad_account:ACCT-D",
+   "type": "ad_account",
+   "type_label": "Advertiser account",
+   "name": "ACCT-D",
+   "action": "Suspend the advertiser account",
+   "attack": [
+    "TEST-002",
+    "TEST-018",
+    "TEST-036",
+    "TEST-038",
+    "TEST-057",
+    "TEST-060",
+    "TEST-061",
+    "TEST-062",
+    "TEST-063",
+    "TEST-064",
+    "TEST-065",
+    "TEST-066",
+    "TEST-072",
+    "TEST-076",
+    "TEST-081",
+    "TEST-082",
+    "TEST-083",
+    "TEST-084",
+    "TEST-085",
+    "TEST-086",
+    "TEST-088"
+   ],
+   "benign": [],
+   "attack_count": 21,
+   "attack_share": 26.2,
+   "by_scenario": {
+    "MAL-001": 1,
+    "MAL-003": 1,
+    "MAL-005": 2,
+    "MAL-008": 6,
+    "MAL-009": 3,
+    "MAL-010": 1,
+    "MAL-011": 7
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 17,
+     "uncontained": 4,
+     "uncontained_tests": [
+      "TEST-065",
+      "TEST-066",
+      "TEST-072",
+      "TEST-076"
+     ]
+    },
+    "retest": {
+     "contained": 20,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-076"
+     ]
+    }
+   },
+   "safe": true,
+   "curve_step": 2
+  },
+  {
+   "id": "registrar:Registrar-Beta",
+   "type": "registrar",
+   "type_label": "Registrar",
+   "name": "Registrar-Beta",
+   "action": "Request takedown of the domains at this registrar",
+   "attack": [
+    "TEST-006",
+    "TEST-009",
+    "TEST-011",
+    "TEST-012",
+    "TEST-013",
+    "TEST-014",
+    "TEST-016",
+    "TEST-023",
+    "TEST-035",
+    "TEST-041",
+    "TEST-045",
+    "TEST-047",
+    "TEST-048",
+    "TEST-072",
+    "TEST-073",
+    "TEST-074",
+    "TEST-075",
+    "TEST-078",
+    "TEST-083",
+    "TEST-087"
+   ],
+   "benign": [
+    "TEST-050",
+    "TEST-055",
+    "TEST-089",
+    "TEST-090",
+    "TEST-091",
+    "TEST-093",
+    "TEST-094",
+    "TEST-095",
+    "TEST-096"
+   ],
+   "attack_count": 20,
+   "attack_share": 25.0,
+   "by_scenario": {
+    "MAL-001": 1,
+    "MAL-002": 6,
+    "MAL-003": 1,
+    "MAL-005": 1,
+    "MAL-006": 4,
+    "MAL-009": 1,
+    "MAL-010": 4,
+    "MAL-011": 2
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 11,
+     "uncontained": 9,
+     "uncontained_tests": [
+      "TEST-041",
+      "TEST-045",
+      "TEST-047",
+      "TEST-048",
+      "TEST-072",
+      "TEST-073",
+      "TEST-074",
+      "TEST-075",
+      "TEST-078"
+     ]
+    },
+    "retest": {
+     "contained": 16,
+     "uncontained": 4,
+     "uncontained_tests": [
+      "TEST-073",
+      "TEST-074",
+      "TEST-075",
+      "TEST-078"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "registrar:Registrar-Alpha",
+   "type": "registrar",
+   "type_label": "Registrar",
+   "name": "Registrar-Alpha",
+   "action": "Request takedown of the domains at this registrar",
+   "attack": [
+    "TEST-001",
+    "TEST-005",
+    "TEST-007",
+    "TEST-010",
+    "TEST-017",
+    "TEST-019",
+    "TEST-021",
+    "TEST-022",
+    "TEST-038",
+    "TEST-043",
+    "TEST-064",
+    "TEST-065",
+    "TEST-066",
+    "TEST-067",
+    "TEST-069",
+    "TEST-070",
+    "TEST-071",
+    "TEST-076",
+    "TEST-088"
+   ],
+   "benign": [
+    "TEST-049",
+    "TEST-051",
+    "TEST-052",
+    "TEST-053",
+    "TEST-054",
+    "TEST-056"
+   ],
+   "attack_count": 19,
+   "attack_share": 23.8,
+   "by_scenario": {
+    "MAL-001": 3,
+    "MAL-002": 1,
+    "MAL-003": 4,
+    "MAL-005": 1,
+    "MAL-006": 1,
+    "MAL-008": 1,
+    "MAL-009": 6,
+    "MAL-010": 1,
+    "MAL-011": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 11,
+     "uncontained": 8,
+     "uncontained_tests": [
+      "TEST-043",
+      "TEST-065",
+      "TEST-066",
+      "TEST-067",
+      "TEST-069",
+      "TEST-070",
+      "TEST-071",
+      "TEST-076"
+     ]
+    },
+    "retest": {
+     "contained": 18,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-076"
+     ]
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  },
+  {
+   "id": "redirect_family:hop-relay.test",
+   "type": "redirect_family",
+   "type_label": "Redirect host family",
+   "name": "hop-relay.test",
+   "action": "Block the whole redirect domain family",
+   "attack": [
+    "TEST-025",
+    "TEST-026",
+    "TEST-027",
+    "TEST-028",
+    "TEST-029",
+    "TEST-030",
+    "TEST-031",
+    "TEST-032",
+    "TEST-033",
+    "TEST-034",
+    "TEST-035",
+    "TEST-036",
+    "TEST-037",
+    "TEST-038",
+    "TEST-039",
+    "TEST-040"
+   ],
+   "benign": [],
+   "attack_count": 16,
+   "attack_share": 20.0,
+   "by_scenario": {
+    "MAL-004": 8,
+    "MAL-005": 8
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 16,
+     "uncontained": 0,
+     "uncontained_tests": []
+    },
+    "retest": {
+     "contained": 16,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": true,
+   "curve_step": 6
+  },
+  {
+   "id": "ad_account:ACCT-B",
+   "type": "ad_account",
+   "type_label": "Advertiser account",
+   "name": "ACCT-B",
+   "action": "Suspend the advertiser account",
+   "attack": [
+    "TEST-017",
+    "TEST-019",
+    "TEST-020",
+    "TEST-021",
+    "TEST-022",
+    "TEST-023",
+    "TEST-024",
+    "TEST-025",
+    "TEST-026",
+    "TEST-027",
+    "TEST-028",
+    "TEST-031",
+    "TEST-032",
+    "TEST-059",
+    "TEST-068"
+   ],
+   "benign": [],
+   "attack_count": 15,
+   "attack_share": 18.8,
+   "by_scenario": {
+    "MAL-003": 7,
+    "MAL-004": 6,
+    "MAL-008": 1,
+    "MAL-009": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 14,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-068"
+     ]
+    },
+    "retest": {
+     "contained": 15,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": true,
+   "curve_step": 3
+  },
+  {
+   "id": "ad_account:ACCT-C",
+   "type": "ad_account",
+   "type_label": "Advertiser account",
+   "name": "ACCT-C",
+   "action": "Suspend the advertiser account",
+   "attack": [
+    "TEST-033",
+    "TEST-035",
+    "TEST-039",
+    "TEST-040",
+    "TEST-041",
+    "TEST-042",
+    "TEST-043",
+    "TEST-044",
+    "TEST-045",
+    "TEST-046",
+    "TEST-047",
+    "TEST-048",
+    "TEST-067",
+    "TEST-087"
+   ],
+   "benign": [],
+   "attack_count": 14,
+   "attack_share": 17.5,
+   "by_scenario": {
+    "MAL-005": 4,
+    "MAL-006": 8,
+    "MAL-009": 1,
+    "MAL-011": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 5,
+     "uncontained": 9,
+     "uncontained_tests": [
+      "TEST-041",
+      "TEST-042",
+      "TEST-043",
+      "TEST-044",
+      "TEST-045",
+      "TEST-046",
+      "TEST-047",
+      "TEST-048",
+      "TEST-067"
+     ]
+    },
+    "retest": {
+     "contained": 14,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": true,
+   "curve_step": 4
+  },
+  {
+   "id": "registrar:Registrar-Delta",
+   "type": "registrar",
+   "type_label": "Registrar",
+   "name": "Registrar-Delta",
+   "action": "Request takedown of the domains at this registrar",
+   "attack": [
+    "TEST-026",
+    "TEST-031",
+    "TEST-042",
+    "TEST-046",
+    "TEST-059",
+    "TEST-079",
+    "TEST-080",
+    "TEST-085"
+   ],
+   "benign": [],
+   "attack_count": 8,
+   "attack_share": 10.0,
+   "by_scenario": {
+    "MAL-004": 2,
+    "MAL-006": 2,
+    "MAL-008": 1,
+    "MAL-010": 2,
+    "MAL-011": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 4,
+     "uncontained": 4,
+     "uncontained_tests": [
+      "TEST-042",
+      "TEST-046",
+      "TEST-079",
+      "TEST-080"
+     ]
+    },
+    "retest": {
+     "contained": 6,
+     "uncontained": 2,
+     "uncontained_tests": [
+      "TEST-079",
+      "TEST-080"
+     ]
+    }
+   },
+   "safe": true,
+   "curve_step": null
+  },
+  {
+   "id": "redirect_family:rotating-edge.test",
+   "type": "redirect_family",
+   "type_label": "Redirect host family",
+   "name": "rotating-edge.test",
+   "action": "Block the whole redirect domain family",
+   "attack": [
+    "TEST-057",
+    "TEST-058",
+    "TEST-059",
+    "TEST-060",
+    "TEST-061",
+    "TEST-062",
+    "TEST-063",
+    "TEST-064"
+   ],
+   "benign": [],
+   "attack_count": 8,
+   "attack_share": 10.0,
+   "by_scenario": {
+    "MAL-008": 8
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 8,
+     "uncontained": 0,
+     "uncontained_tests": []
+    },
+    "retest": {
+     "contained": 8,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": true,
+   "curve_step": null
+  },
+  {
+   "id": "redirect_family:traffic-filter.test",
+   "type": "redirect_family",
+   "type_label": "Redirect host family",
+   "name": "traffic-filter.test",
+   "action": "Block the whole redirect domain family",
+   "attack": [
+    "TEST-081",
+    "TEST-082",
+    "TEST-083",
+    "TEST-084",
+    "TEST-085",
+    "TEST-086",
+    "TEST-087",
+    "TEST-088"
+   ],
+   "benign": [],
+   "attack_count": 8,
+   "attack_share": 10.0,
+   "by_scenario": {
+    "MAL-011": 8
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 8,
+     "uncontained": 0,
+     "uncontained_tests": []
+    },
+    "retest": {
+     "contained": 8,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": true,
+   "curve_step": null
+  },
+  {
+   "id": "ad_account:ACCT-F",
+   "type": "ad_account",
+   "type_label": "Advertiser account",
+   "name": "ACCT-F",
+   "action": "Suspend the advertiser account",
+   "attack": [
+    "TEST-034",
+    "TEST-037",
+    "TEST-058",
+    "TEST-069",
+    "TEST-075"
+   ],
+   "benign": [],
+   "attack_count": 5,
+   "attack_share": 6.2,
+   "by_scenario": {
+    "MAL-005": 2,
+    "MAL-008": 1,
+    "MAL-009": 1,
+    "MAL-010": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 3,
+     "uncontained": 2,
+     "uncontained_tests": [
+      "TEST-069",
+      "TEST-075"
+     ]
+    },
+    "retest": {
+     "contained": 4,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-075"
+     ]
+    }
+   },
+   "safe": true,
+   "curve_step": 5
+  },
+  {
+   "id": "hosting:Host-Net-4",
+   "type": "hosting",
+   "type_label": "Hosting provider",
+   "name": "Host-Net-4",
+   "action": "Block the hosting range at the proxy and DNS layer",
+   "attack": [
+    "TEST-044",
+    "TEST-058",
+    "TEST-086"
+   ],
+   "benign": [
+    "TEST-049",
+    "TEST-050",
+    "TEST-055"
+   ],
+   "attack_count": 3,
+   "attack_share": 3.8,
+   "by_scenario": {
+    "MAL-006": 1,
+    "MAL-008": 1,
+    "MAL-011": 1
+   },
+   "per_run": {
+    "baseline": {
+     "contained": 2,
+     "uncontained": 1,
+     "uncontained_tests": [
+      "TEST-044"
+     ]
+    },
+    "retest": {
+     "contained": 3,
+     "uncontained": 0,
+     "uncontained_tests": []
+    }
+   },
+   "safe": false,
+   "curve_step": null
+  }
+ ],
+ "edges": [
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-002",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 3
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "registrar:Registrar-Gamma",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "hosting:Host-Net-3",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "hosting:Host-Net-3",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "hosting:Host-Net-3",
+   "count": 5
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "hosting:Host-Net-3",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "hosting:Host-Net-3",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "hosting:Host-Net-3",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "hosting:Host-Net-1",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-002",
+   "node_id": "hosting:Host-Net-1",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "hosting:Host-Net-1",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "hosting:Host-Net-1",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "hosting:Host-Net-1",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "hosting:Host-Net-1",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "ad_account:ACCT-A",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-002",
+   "node_id": "ad_account:ACCT-A",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "ad_account:ACCT-A",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "ad_account:ACCT-A",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "ad_account:ACCT-A",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "hosting:Host-Net-2",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "hosting:Host-Net-2",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "hosting:Host-Net-2",
+   "count": 5
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "hosting:Host-Net-2",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "hosting:Host-Net-2",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "hosting:Host-Net-2",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "ad_account:ACCT-D",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "ad_account:ACCT-D",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "ad_account:ACCT-D",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "ad_account:ACCT-D",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "ad_account:ACCT-D",
+   "count": 3
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "ad_account:ACCT-D",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "ad_account:ACCT-D",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-002",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "registrar:Registrar-Beta",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-001",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 3
+  },
+  {
+   "scenario_code": "MAL-002",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "registrar:Registrar-Alpha",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "redirect_family:hop-relay.test",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "redirect_family:hop-relay.test",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-003",
+   "node_id": "ad_account:ACCT-B",
+   "count": 7
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "ad_account:ACCT-B",
+   "count": 6
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "ad_account:ACCT-B",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "ad_account:ACCT-B",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "ad_account:ACCT-C",
+   "count": 4
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "ad_account:ACCT-C",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "ad_account:ACCT-C",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "ad_account:ACCT-C",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-004",
+   "node_id": "registrar:Registrar-Delta",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "registrar:Registrar-Delta",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "registrar:Registrar-Delta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "registrar:Registrar-Delta",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "registrar:Registrar-Delta",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "redirect_family:rotating-edge.test",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "redirect_family:traffic-filter.test",
+   "count": 8
+  },
+  {
+   "scenario_code": "MAL-005",
+   "node_id": "ad_account:ACCT-F",
+   "count": 2
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "ad_account:ACCT-F",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-009",
+   "node_id": "ad_account:ACCT-F",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-010",
+   "node_id": "ad_account:ACCT-F",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-006",
+   "node_id": "hosting:Host-Net-4",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-008",
+   "node_id": "hosting:Host-Net-4",
+   "count": 1
+  },
+  {
+   "scenario_code": "MAL-011",
+   "node_id": "hosting:Host-Net-4",
+   "count": 1
+  }
+ ],
+ "curve": [
+  {
+   "step": 1,
+   "node_id": "ad_account:ACCT-A",
+   "label": "Advertiser account ACCT-A",
+   "newly_covered": [
+    "TEST-001",
+    "TEST-003",
+    "TEST-004",
+    "TEST-005",
+    "TEST-006",
+    "TEST-007",
+    "TEST-008",
+    "TEST-009",
+    "TEST-010",
+    "TEST-011",
+    "TEST-012",
+    "TEST-013",
+    "TEST-014",
+    "TEST-015",
+    "TEST-016",
+    "TEST-030",
+    "TEST-070",
+    "TEST-071",
+    "TEST-073",
+    "TEST-074",
+    "TEST-077",
+    "TEST-078",
+    "TEST-079",
+    "TEST-080"
+   ],
+   "covered": 24,
+   "cumulative_pct": 30.0,
+   "collateral": 0
+  },
+  {
+   "step": 2,
+   "node_id": "ad_account:ACCT-D",
+   "label": "Advertiser account ACCT-D",
+   "newly_covered": [
+    "TEST-002",
+    "TEST-018",
+    "TEST-036",
+    "TEST-038",
+    "TEST-057",
+    "TEST-060",
+    "TEST-061",
+    "TEST-062",
+    "TEST-063",
+    "TEST-064",
+    "TEST-065",
+    "TEST-066",
+    "TEST-072",
+    "TEST-076",
+    "TEST-081",
+    "TEST-082",
+    "TEST-083",
+    "TEST-084",
+    "TEST-085",
+    "TEST-086",
+    "TEST-088"
+   ],
+   "covered": 45,
+   "cumulative_pct": 56.2,
+   "collateral": 0
+  },
+  {
+   "step": 3,
+   "node_id": "ad_account:ACCT-B",
+   "label": "Advertiser account ACCT-B",
+   "newly_covered": [
+    "TEST-017",
+    "TEST-019",
+    "TEST-020",
+    "TEST-021",
+    "TEST-022",
+    "TEST-023",
+    "TEST-024",
+    "TEST-025",
+    "TEST-026",
+    "TEST-027",
+    "TEST-028",
+    "TEST-031",
+    "TEST-032",
+    "TEST-059",
+    "TEST-068"
+   ],
+   "covered": 60,
+   "cumulative_pct": 75.0,
+   "collateral": 0
+  },
+  {
+   "step": 4,
+   "node_id": "ad_account:ACCT-C",
+   "label": "Advertiser account ACCT-C",
+   "newly_covered": [
+    "TEST-033",
+    "TEST-035",
+    "TEST-039",
+    "TEST-040",
+    "TEST-041",
+    "TEST-042",
+    "TEST-043",
+    "TEST-044",
+    "TEST-045",
+    "TEST-046",
+    "TEST-047",
+    "TEST-048",
+    "TEST-067",
+    "TEST-087"
+   ],
+   "covered": 74,
+   "cumulative_pct": 92.5,
+   "collateral": 0
+  },
+  {
+   "step": 5,
+   "node_id": "ad_account:ACCT-F",
+   "label": "Advertiser account ACCT-F",
+   "newly_covered": [
+    "TEST-034",
+    "TEST-037",
+    "TEST-058",
+    "TEST-069",
+    "TEST-075"
+   ],
+   "covered": 79,
+   "cumulative_pct": 98.8,
+   "collateral": 0
+  },
+  {
+   "step": 6,
+   "node_id": "redirect_family:hop-relay.test",
+   "label": "Redirect host family hop-relay.test",
+   "newly_covered": [
+    "TEST-029"
+   ],
+   "covered": 80,
+   "cumulative_pct": 100.0,
+   "collateral": 0
+  }
+ ],
+ "uncovered": [],
+ "detection": {
+  "baseline": [
+   {
+    "rule": "R1",
+    "name": "KNOWN_BAD_DESTINATION",
+    "severity": "High",
+    "enabled": true,
+    "fires_on": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008"
+    ],
+    "sole_detector_for": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008",
+     "TEST-066",
+     "TEST-067",
+     "TEST-068",
+     "TEST-069",
+     "TEST-070",
+     "TEST-071",
+     "TEST-072"
+    ]
+   },
+   {
+    "rule": "R2",
+    "name": "FIRST_SEEN_DOMAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016",
+     "TEST-025",
+     "TEST-026",
+     "TEST-027",
+     "TEST-028",
+     "TEST-029",
+     "TEST-030",
+     "TEST-031",
+     "TEST-032",
+     "TEST-033",
+     "TEST-034",
+     "TEST-035",
+     "TEST-036",
+     "TEST-037",
+     "TEST-038",
+     "TEST-039",
+     "TEST-040",
+     "TEST-057",
+     "TEST-058",
+     "TEST-059",
+     "TEST-060",
+     "TEST-061",
+     "TEST-062",
+     "TEST-063",
+     "TEST-064",
+     "TEST-081",
+     "TEST-082",
+     "TEST-083",
+     "TEST-084",
+     "TEST-085",
+     "TEST-086",
+     "TEST-087",
+     "TEST-088"
+    ],
+    "sole_detector_for": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016",
+     "TEST-033",
+     "TEST-034",
+     "TEST-035",
+     "TEST-036",
+     "TEST-037",
+     "TEST-038",
+     "TEST-039",
+     "TEST-040"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016"
+    ]
+   },
+   {
+    "rule": "R3",
+    "name": "LOOKALIKE_DOMAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ],
+    "sole_detector_for": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ],
+    "false_positives": [
+     "TEST-089",
+     "TEST-090",
+     "TEST-091",
+     "TEST-092",
+     "TEST-093",
+     "TEST-094",
+     "TEST-095",
+     "TEST-096"
+    ],
+    "needed_by": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ]
+   },
+   {
+    "rule": "R4",
+    "name": "SUSPICIOUS_REDIRECT_CHAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-025",
+     "TEST-026",
+     "TEST-027",
+     "TEST-028",
+     "TEST-029",
+     "TEST-030",
+     "TEST-031",
+     "TEST-032",
+     "TEST-057",
+     "TEST-058",
+     "TEST-059",
+     "TEST-060",
+     "TEST-061",
+     "TEST-062",
+     "TEST-063",
+     "TEST-064",
+     "TEST-081",
+     "TEST-082",
+     "TEST-083",
+     "TEST-084",
+     "TEST-085",
+     "TEST-086",
+     "TEST-087",
+     "TEST-088"
+    ],
+    "sole_detector_for": [],
+    "false_positives": [],
+    "needed_by": []
+   },
+   {
+    "rule": "R5",
+    "name": "CREDENTIAL_ON_UNAPPROVED_ORIGIN",
+    "severity": "High",
+    "enabled": false,
+    "fires_on": [],
+    "sole_detector_for": [],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-041",
+     "TEST-042",
+     "TEST-043",
+     "TEST-044",
+     "TEST-045",
+     "TEST-046",
+     "TEST-047",
+     "TEST-048"
+    ]
+   },
+   {
+    "rule": "R6",
+    "name": "DOWNLOAD_AFTER_AD_CLICK",
+    "severity": "High",
+    "enabled": true,
+    "fires_on": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ],
+    "sole_detector_for": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ]
+   }
+  ],
+  "retest": [
+   {
+    "rule": "R1",
+    "name": "KNOWN_BAD_DESTINATION",
+    "severity": "High",
+    "enabled": true,
+    "fires_on": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008",
+     "TEST-065",
+     "TEST-066",
+     "TEST-067",
+     "TEST-068",
+     "TEST-069",
+     "TEST-070",
+     "TEST-071",
+     "TEST-072"
+    ],
+    "sole_detector_for": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008",
+     "TEST-066",
+     "TEST-067",
+     "TEST-068",
+     "TEST-069",
+     "TEST-070",
+     "TEST-071",
+     "TEST-072"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-001",
+     "TEST-002",
+     "TEST-003",
+     "TEST-004",
+     "TEST-005",
+     "TEST-006",
+     "TEST-007",
+     "TEST-008",
+     "TEST-066",
+     "TEST-067",
+     "TEST-068",
+     "TEST-069",
+     "TEST-070",
+     "TEST-071",
+     "TEST-072"
+    ]
+   },
+   {
+    "rule": "R2",
+    "name": "FIRST_SEEN_DOMAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016",
+     "TEST-025",
+     "TEST-026",
+     "TEST-027",
+     "TEST-028",
+     "TEST-029",
+     "TEST-030",
+     "TEST-031",
+     "TEST-032",
+     "TEST-033",
+     "TEST-034",
+     "TEST-035",
+     "TEST-036",
+     "TEST-037",
+     "TEST-038",
+     "TEST-039",
+     "TEST-040",
+     "TEST-057",
+     "TEST-058",
+     "TEST-059",
+     "TEST-060",
+     "TEST-061",
+     "TEST-062",
+     "TEST-063",
+     "TEST-064",
+     "TEST-065",
+     "TEST-081",
+     "TEST-082",
+     "TEST-083",
+     "TEST-084",
+     "TEST-085",
+     "TEST-086",
+     "TEST-087",
+     "TEST-088"
+    ],
+    "sole_detector_for": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-009",
+     "TEST-010",
+     "TEST-011",
+     "TEST-012",
+     "TEST-013",
+     "TEST-014",
+     "TEST-015",
+     "TEST-016"
+    ]
+   },
+   {
+    "rule": "R3",
+    "name": "LOOKALIKE_DOMAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ],
+    "sole_detector_for": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-017",
+     "TEST-018",
+     "TEST-019",
+     "TEST-020",
+     "TEST-021",
+     "TEST-022",
+     "TEST-023",
+     "TEST-024"
+    ]
+   },
+   {
+    "rule": "R4",
+    "name": "SUSPICIOUS_REDIRECT_CHAIN",
+    "severity": "Medium",
+    "enabled": true,
+    "fires_on": [
+     "TEST-025",
+     "TEST-026",
+     "TEST-027",
+     "TEST-028",
+     "TEST-029",
+     "TEST-030",
+     "TEST-031",
+     "TEST-032",
+     "TEST-033",
+     "TEST-034",
+     "TEST-035",
+     "TEST-036",
+     "TEST-037",
+     "TEST-038",
+     "TEST-039",
+     "TEST-040",
+     "TEST-057",
+     "TEST-058",
+     "TEST-059",
+     "TEST-060",
+     "TEST-061",
+     "TEST-062",
+     "TEST-063",
+     "TEST-064",
+     "TEST-081",
+     "TEST-082",
+     "TEST-083",
+     "TEST-084",
+     "TEST-085",
+     "TEST-086",
+     "TEST-087",
+     "TEST-088"
+    ],
+    "sole_detector_for": [],
+    "false_positives": [],
+    "needed_by": []
+   },
+   {
+    "rule": "R5",
+    "name": "CREDENTIAL_ON_UNAPPROVED_ORIGIN",
+    "severity": "High",
+    "enabled": true,
+    "fires_on": [
+     "TEST-041",
+     "TEST-042",
+     "TEST-043",
+     "TEST-044",
+     "TEST-045",
+     "TEST-046",
+     "TEST-047",
+     "TEST-048"
+    ],
+    "sole_detector_for": [
+     "TEST-041",
+     "TEST-042",
+     "TEST-043",
+     "TEST-044",
+     "TEST-045",
+     "TEST-046",
+     "TEST-047",
+     "TEST-048"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-041",
+     "TEST-042",
+     "TEST-043",
+     "TEST-044",
+     "TEST-045",
+     "TEST-046",
+     "TEST-047",
+     "TEST-048"
+    ]
+   },
+   {
+    "rule": "R6",
+    "name": "DOWNLOAD_AFTER_AD_CLICK",
+    "severity": "High",
+    "enabled": true,
+    "fires_on": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ],
+    "sole_detector_for": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ],
+    "false_positives": [],
+    "needed_by": [
+     "TEST-073",
+     "TEST-074",
+     "TEST-075",
+     "TEST-076",
+     "TEST-077",
+     "TEST-078",
+     "TEST-079",
+     "TEST-080"
+    ]
+   }
+  ]
+ },
+ "min_paths": 3,
+ "curve_note": "The curve only uses nodes that carry no legitimate journeys. Nodes that do are listed in the table but are unsafe to block wholesale.",
+ "test_scenarios": {
+  "TEST-001": "MAL-001",
+  "TEST-002": "MAL-001",
+  "TEST-003": "MAL-001",
+  "TEST-004": "MAL-001",
+  "TEST-005": "MAL-001",
+  "TEST-006": "MAL-001",
+  "TEST-007": "MAL-001",
+  "TEST-008": "MAL-001",
+  "TEST-009": "MAL-002",
+  "TEST-010": "MAL-002",
+  "TEST-011": "MAL-002",
+  "TEST-012": "MAL-002",
+  "TEST-013": "MAL-002",
+  "TEST-014": "MAL-002",
+  "TEST-015": "MAL-002",
+  "TEST-016": "MAL-002",
+  "TEST-017": "MAL-003",
+  "TEST-018": "MAL-003",
+  "TEST-019": "MAL-003",
+  "TEST-020": "MAL-003",
+  "TEST-021": "MAL-003",
+  "TEST-022": "MAL-003",
+  "TEST-023": "MAL-003",
+  "TEST-024": "MAL-003",
+  "TEST-025": "MAL-004",
+  "TEST-026": "MAL-004",
+  "TEST-027": "MAL-004",
+  "TEST-028": "MAL-004",
+  "TEST-029": "MAL-004",
+  "TEST-030": "MAL-004",
+  "TEST-031": "MAL-004",
+  "TEST-032": "MAL-004",
+  "TEST-033": "MAL-005",
+  "TEST-034": "MAL-005",
+  "TEST-035": "MAL-005",
+  "TEST-036": "MAL-005",
+  "TEST-037": "MAL-005",
+  "TEST-038": "MAL-005",
+  "TEST-039": "MAL-005",
+  "TEST-040": "MAL-005",
+  "TEST-041": "MAL-006",
+  "TEST-042": "MAL-006",
+  "TEST-043": "MAL-006",
+  "TEST-044": "MAL-006",
+  "TEST-045": "MAL-006",
+  "TEST-046": "MAL-006",
+  "TEST-047": "MAL-006",
+  "TEST-048": "MAL-006",
+  "TEST-049": "MAL-007",
+  "TEST-050": "MAL-007",
+  "TEST-051": "MAL-007",
+  "TEST-052": "MAL-007",
+  "TEST-053": "MAL-007",
+  "TEST-054": "MAL-007",
+  "TEST-055": "MAL-007",
+  "TEST-056": "MAL-007",
+  "TEST-057": "MAL-008",
+  "TEST-058": "MAL-008",
+  "TEST-059": "MAL-008",
+  "TEST-060": "MAL-008",
+  "TEST-061": "MAL-008",
+  "TEST-062": "MAL-008",
+  "TEST-063": "MAL-008",
+  "TEST-064": "MAL-008",
+  "TEST-065": "MAL-009",
+  "TEST-066": "MAL-009",
+  "TEST-067": "MAL-009",
+  "TEST-068": "MAL-009",
+  "TEST-069": "MAL-009",
+  "TEST-070": "MAL-009",
+  "TEST-071": "MAL-009",
+  "TEST-072": "MAL-009",
+  "TEST-073": "MAL-010",
+  "TEST-074": "MAL-010",
+  "TEST-075": "MAL-010",
+  "TEST-076": "MAL-010",
+  "TEST-077": "MAL-010",
+  "TEST-078": "MAL-010",
+  "TEST-079": "MAL-010",
+  "TEST-080": "MAL-010",
+  "TEST-081": "MAL-011",
+  "TEST-082": "MAL-011",
+  "TEST-083": "MAL-011",
+  "TEST-084": "MAL-011",
+  "TEST-085": "MAL-011",
+  "TEST-086": "MAL-011",
+  "TEST-087": "MAL-011",
+  "TEST-088": "MAL-011",
+  "TEST-089": "MAL-012",
+  "TEST-090": "MAL-012",
+  "TEST-091": "MAL-012",
+  "TEST-092": "MAL-012",
+  "TEST-093": "MAL-012",
+  "TEST-094": "MAL-012",
+  "TEST-095": "MAL-012",
+  "TEST-096": "MAL-012"
+ },
+ "notes": [
+  "Advertiser account, registrar and hosting labels are synthetic attributes added for this analysis. They do not change any event, rule or metric.",
+  "A node needs at least 3 attack journeys to count as a choke point.",
+  "Collateral lists legitimate test journeys that share the node, so blocking it would hit them too."
+ ]
+}

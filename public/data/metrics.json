@@ -123,189 +123,200 @@
    "kpis": {
     "impression_click_visibility": {
      "value": 91.7,
-     "num": 11,
-     "den": 12
+     "num": 88,
+     "den": 96
     },
     "click_landing_visibility": {
      "value": 83.3,
-     "num": 10,
-     "den": 12,
-     "blocked_inline": 1,
-     "missing_telemetry": 1
+     "num": 80,
+     "den": 96,
+     "blocked_inline": 8,
+     "missing_telemetry": 8
     },
     "detection_coverage": {
      "value": 80.0,
-     "num": 8,
-     "den": 10
+     "num": 64,
+     "den": 80
     },
     "ttd": {
-     "n": 8,
-     "mean": 41.0,
-     "median": 39.5,
-     "min": 2.0,
-     "max": 73.0
+     "n": 64,
+     "mean": 43.9,
+     "median": 43.5,
+     "min": 1.0,
+     "max": 87.0
     },
     "ttt": {
-     "n": 9,
-     "mean": 85.2,
-     "median": 97.0,
-     "min": 40.0,
-     "max": 144.0
+     "n": 72,
+     "mean": 79.9,
+     "median": 82.0,
+     "min": 21.0,
+     "max": 150.0
     },
     "ttc": {
-     "n": 7,
-     "mean": 261.3,
-     "median": 332.0,
+     "n": 56,
+     "mean": 239.6,
+     "median": 274.0,
      "min": 1.0,
-     "max": 416.0
+     "max": 494.0
     },
     "blocking_propagation": {
-     "n": 7,
-     "mean": 46.7,
-     "median": 31.0,
+     "n": 56,
+     "mean": 60.2,
+     "median": 61.0,
      "min": 1.0,
-     "max": 92.0
+     "max": 118.0
     },
     "redirect_inspection": {
-     "value": 94.1,
-     "num": 16,
-     "den": 17
+     "value": 94.4,
+     "num": 136,
+     "den": 144
     },
     "containment_success": {
      "value": 70.0,
-     "num": 7,
-     "den": 10,
-     "attempted": 8,
-     "failed": 1
+     "num": 56,
+     "den": 80,
+     "attempted": 64,
+     "failed": 8
     },
     "false_positive": {
-     "legitimate_tested": 2,
-     "legitimate_with_incident": 1,
-     "legitimate_blocked": 1,
+     "legitimate_tested": 16,
+     "legitimate_with_incident": 8,
+     "legitimate_blocked": 8,
      "rate": {
       "value": 50.0,
-      "num": 1,
-      "den": 2
+      "num": 8,
+      "den": 16
      }
     },
     "identity_protection": {
      "value": 0.0,
      "num": 0,
-     "den": 1
+     "den": 8
     },
     "evidence_completeness": {
      "value": 89.2,
-     "num": 99,
-     "den": 111,
+     "num": 792,
+     "den": 888,
      "label": "POC evidence-completeness metric (not an industry standard)"
     },
     "journey_reconstruction": {
      "value": 75.0,
-     "num": 9,
-     "den": 12
+     "num": 72,
+     "den": 96
     },
     "alerts": {
-     "total": 9,
-     "true_positive": 8,
-     "false_positive": 1,
+     "total": 72,
+     "true_positive": 64,
+     "false_positive": 8,
      "by_severity": {
-      "High": 2,
-      "Medium": 7,
+      "High": 16,
+      "Medium": 56,
       "Low": 0
      }
     },
     "totals": {
-     "tests": 12,
-     "attack_tests": 10,
-     "benign_tests": 2,
-     "pass_": 5,
-     "fail": 7
+     "tests": 96,
+     "attack_tests": 80,
+     "benign_tests": 16,
+     "pass_": 40,
+     "fail": 56
     }
    },
    "per_test": [
     {
      "test_id": "TEST-001",
      "scenario_code": "MAL-001",
-     "ttd_s": 2.0,
+     "variant": 1,
+     "ttd_s": 1.0,
      "ttt_s": 42.0,
      "ttc_s": 1.0,
      "propagation_s": 1.0
     },
     {
      "test_id": "TEST-002",
-     "scenario_code": "MAL-002",
-     "ttd_s": 37.0,
+     "scenario_code": "MAL-001",
+     "variant": 2,
+     "ttd_s": 1.0,
      "ttt_s": 97.0,
-     "ttc_s": 337.0,
-     "propagation_s": 70.0
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-003",
-     "scenario_code": "MAL-003",
-     "ttd_s": 73.0,
+     "scenario_code": "MAL-001",
+     "variant": 3,
+     "ttd_s": 1.0,
      "ttt_s": 97.0,
-     "ttc_s": 30.0,
-     "propagation_s": 20.0
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-004",
-     "scenario_code": "MAL-004",
-     "ttd_s": 42.0,
+     "scenario_code": "MAL-001",
+     "variant": 4,
+     "ttd_s": 1.0,
      "ttt_s": 144.0,
-     "ttc_s": 416.0,
-     "propagation_s": 90.0
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-005",
-     "scenario_code": "MAL-005",
-     "ttd_s": 31.0,
+     "scenario_code": "MAL-001",
+     "variant": 5,
+     "ttd_s": 1.0,
      "ttt_s": 67.0,
-     "ttc_s": 306.0,
-     "propagation_s": 23.0
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-006",
-     "scenario_code": "MAL-006",
-     "ttd_s": null,
-     "ttt_s": null,
-     "ttc_s": null,
-     "propagation_s": null
+     "scenario_code": "MAL-001",
+     "variant": 6,
+     "ttd_s": 1.0,
+     "ttt_s": 37.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-007",
-     "scenario_code": "MAL-007",
-     "ttd_s": null,
-     "ttt_s": null,
-     "ttc_s": null,
-     "propagation_s": null
+     "scenario_code": "MAL-001",
+     "variant": 7,
+     "ttd_s": 1.0,
+     "ttt_s": 89.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-008",
-     "scenario_code": "MAL-008",
-     "ttd_s": 62.0,
+     "scenario_code": "MAL-001",
+     "variant": 8,
+     "ttd_s": 1.0,
      "ttt_s": 117.0,
-     "ttc_s": 407.0,
-     "propagation_s": 31.0
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
     },
     {
      "test_id": "TEST-009",
-     "scenario_code": "MAL-009",
-     "ttd_s": null,
-     "ttt_s": null,
-     "ttc_s": null,
-     "propagation_s": null
+     "scenario_code": "MAL-002",
+     "variant": 1,
+     "ttd_s": 39.0,
+     "ttt_s": 86.0,
+     "ttc_s": 401.0,
+     "propagation_s": 72.0
     },
     {
      "test_id": "TEST-010",
-     "scenario_code": "MAL-010",
-     "ttd_s": 34.0,
+     "scenario_code": "MAL-002",
+     "variant": 2,
+     "ttd_s": 64.0,
      "ttt_s": 108.0,
-     "ttc_s": null,
-     "propagation_s": null
+     "ttc_s": 387.0,
+     "propagation_s": 115.0
     },
     {
      "test_id": "TEST-011",
-     "scenario_code": "MAL-011",
+     "scenario_code": "MAL-002",
+     "variant": 3,
      "ttd_s": 47.0,
      "ttt_s": 55.0,
      "ttc_s": 332.0,
@@ -313,9 +324,766 @@
     },
     {
      "test_id": "TEST-012",
-     "scenario_code": "MAL-012",
-     "ttd_s": null,
+     "scenario_code": "MAL-002",
+     "variant": 4,
+     "ttd_s": 57.0,
      "ttt_s": 40.0,
+     "ttc_s": 244.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-013",
+     "scenario_code": "MAL-002",
+     "variant": 5,
+     "ttd_s": 32.0,
+     "ttt_s": 140.0,
+     "ttc_s": 400.0,
+     "propagation_s": 32.0
+    },
+    {
+     "test_id": "TEST-014",
+     "scenario_code": "MAL-002",
+     "variant": 6,
+     "ttd_s": 60.0,
+     "ttt_s": 99.0,
+     "ttc_s": 412.0,
+     "propagation_s": 112.0
+    },
+    {
+     "test_id": "TEST-015",
+     "scenario_code": "MAL-002",
+     "variant": 7,
+     "ttd_s": 68.0,
+     "ttt_s": 76.0,
+     "ttc_s": 218.0,
+     "propagation_s": 26.0
+    },
+    {
+     "test_id": "TEST-016",
+     "scenario_code": "MAL-002",
+     "variant": 8,
+     "ttd_s": 37.0,
+     "ttt_s": 40.0,
+     "ttc_s": 243.0,
+     "propagation_s": 108.0
+    },
+    {
+     "test_id": "TEST-017",
+     "scenario_code": "MAL-003",
+     "variant": 1,
+     "ttd_s": 41.0,
+     "ttt_s": 63.0,
+     "ttc_s": 73.0,
+     "propagation_s": 63.0
+    },
+    {
+     "test_id": "TEST-018",
+     "scenario_code": "MAL-003",
+     "variant": 2,
+     "ttd_s": 26.0,
+     "ttt_s": 21.0,
+     "ttc_s": 94.0,
+     "propagation_s": 84.0
+    },
+    {
+     "test_id": "TEST-019",
+     "scenario_code": "MAL-003",
+     "variant": 3,
+     "ttd_s": 65.0,
+     "ttt_s": 124.0,
+     "ttc_s": 102.0,
+     "propagation_s": 92.0
+    },
+    {
+     "test_id": "TEST-020",
+     "scenario_code": "MAL-003",
+     "variant": 4,
+     "ttd_s": 40.0,
+     "ttt_s": 51.0,
+     "ttc_s": 52.0,
+     "propagation_s": 42.0
+    },
+    {
+     "test_id": "TEST-021",
+     "scenario_code": "MAL-003",
+     "variant": 5,
+     "ttd_s": 46.0,
+     "ttt_s": 28.0,
+     "ttc_s": 54.0,
+     "propagation_s": 44.0
+    },
+    {
+     "test_id": "TEST-022",
+     "scenario_code": "MAL-003",
+     "variant": 6,
+     "ttd_s": 28.0,
+     "ttt_s": 61.0,
+     "ttc_s": 92.0,
+     "propagation_s": 82.0
+    },
+    {
+     "test_id": "TEST-023",
+     "scenario_code": "MAL-003",
+     "variant": 7,
+     "ttd_s": 37.0,
+     "ttt_s": 58.0,
+     "ttc_s": 67.0,
+     "propagation_s": 57.0
+    },
+    {
+     "test_id": "TEST-024",
+     "scenario_code": "MAL-003",
+     "variant": 8,
+     "ttd_s": 45.0,
+     "ttt_s": 150.0,
+     "ttc_s": 42.0,
+     "propagation_s": 32.0
+    },
+    {
+     "test_id": "TEST-025",
+     "scenario_code": "MAL-004",
+     "variant": 1,
+     "ttd_s": 54.0,
+     "ttt_s": 144.0,
+     "ttc_s": 436.0,
+     "propagation_s": 113.0
+    },
+    {
+     "test_id": "TEST-026",
+     "scenario_code": "MAL-004",
+     "variant": 2,
+     "ttd_s": 44.0,
+     "ttt_s": 40.0,
+     "ttc_s": 385.0,
+     "propagation_s": 103.0
+    },
+    {
+     "test_id": "TEST-027",
+     "scenario_code": "MAL-004",
+     "variant": 3,
+     "ttd_s": 65.0,
+     "ttt_s": 27.0,
+     "ttc_s": 164.0,
+     "propagation_s": 26.0
+    },
+    {
+     "test_id": "TEST-028",
+     "scenario_code": "MAL-004",
+     "variant": 4,
+     "ttd_s": 53.0,
+     "ttt_s": 33.0,
+     "ttc_s": 298.0,
+     "propagation_s": 78.0
+    },
+    {
+     "test_id": "TEST-029",
+     "scenario_code": "MAL-004",
+     "variant": 5,
+     "ttd_s": 43.0,
+     "ttt_s": 62.0,
+     "ttc_s": 316.0,
+     "propagation_s": 23.0
+    },
+    {
+     "test_id": "TEST-030",
+     "scenario_code": "MAL-004",
+     "variant": 6,
+     "ttd_s": 53.0,
+     "ttt_s": 78.0,
+     "ttc_s": 279.0,
+     "propagation_s": 54.0
+    },
+    {
+     "test_id": "TEST-031",
+     "scenario_code": "MAL-004",
+     "variant": 7,
+     "ttd_s": 44.0,
+     "ttt_s": 131.0,
+     "ttc_s": 456.0,
+     "propagation_s": 99.0
+    },
+    {
+     "test_id": "TEST-032",
+     "scenario_code": "MAL-004",
+     "variant": 8,
+     "ttd_s": 56.0,
+     "ttt_s": 92.0,
+     "ttc_s": 219.0,
+     "propagation_s": 25.0
+    },
+    {
+     "test_id": "TEST-033",
+     "scenario_code": "MAL-005",
+     "variant": 1,
+     "ttd_s": 36.0,
+     "ttt_s": 72.0,
+     "ttc_s": 204.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-034",
+     "scenario_code": "MAL-005",
+     "variant": 2,
+     "ttd_s": 78.0,
+     "ttt_s": 96.0,
+     "ttc_s": 307.0,
+     "propagation_s": 118.0
+    },
+    {
+     "test_id": "TEST-035",
+     "scenario_code": "MAL-005",
+     "variant": 3,
+     "ttd_s": 35.0,
+     "ttt_s": 44.0,
+     "ttc_s": 310.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-036",
+     "scenario_code": "MAL-005",
+     "variant": 4,
+     "ttd_s": 43.0,
+     "ttt_s": 121.0,
+     "ttc_s": 353.0,
+     "propagation_s": 87.0
+    },
+    {
+     "test_id": "TEST-037",
+     "scenario_code": "MAL-005",
+     "variant": 5,
+     "ttd_s": 61.0,
+     "ttt_s": 61.0,
+     "ttc_s": 235.0,
+     "propagation_s": 29.0
+    },
+    {
+     "test_id": "TEST-038",
+     "scenario_code": "MAL-005",
+     "variant": 6,
+     "ttd_s": 35.0,
+     "ttt_s": 114.0,
+     "ttc_s": 329.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-039",
+     "scenario_code": "MAL-005",
+     "variant": 7,
+     "ttd_s": 35.0,
+     "ttt_s": 61.0,
+     "ttc_s": 358.0,
+     "propagation_s": 100.0
+    },
+    {
+     "test_id": "TEST-040",
+     "scenario_code": "MAL-005",
+     "variant": 8,
+     "ttd_s": 37.0,
+     "ttt_s": 88.0,
+     "ttc_s": 300.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-041",
+     "scenario_code": "MAL-006",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-042",
+     "scenario_code": "MAL-006",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-043",
+     "scenario_code": "MAL-006",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-044",
+     "scenario_code": "MAL-006",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-045",
+     "scenario_code": "MAL-006",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-046",
+     "scenario_code": "MAL-006",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-047",
+     "scenario_code": "MAL-006",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-048",
+     "scenario_code": "MAL-006",
+     "variant": 8,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-049",
+     "scenario_code": "MAL-007",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-050",
+     "scenario_code": "MAL-007",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-051",
+     "scenario_code": "MAL-007",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-052",
+     "scenario_code": "MAL-007",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-053",
+     "scenario_code": "MAL-007",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-054",
+     "scenario_code": "MAL-007",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-055",
+     "scenario_code": "MAL-007",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-056",
+     "scenario_code": "MAL-007",
+     "variant": 8,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-057",
+     "scenario_code": "MAL-008",
+     "variant": 1,
+     "ttd_s": 74.0,
+     "ttt_s": 88.0,
+     "ttc_s": 314.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-058",
+     "scenario_code": "MAL-008",
+     "variant": 2,
+     "ttd_s": 39.0,
+     "ttt_s": 70.0,
+     "ttc_s": 334.0,
+     "propagation_s": 30.0
+    },
+    {
+     "test_id": "TEST-059",
+     "scenario_code": "MAL-008",
+     "variant": 3,
+     "ttd_s": 77.0,
+     "ttt_s": 65.0,
+     "ttc_s": 257.0,
+     "propagation_s": 38.0
+    },
+    {
+     "test_id": "TEST-060",
+     "scenario_code": "MAL-008",
+     "variant": 4,
+     "ttd_s": 58.0,
+     "ttt_s": 135.0,
+     "ttc_s": 364.0,
+     "propagation_s": 114.0
+    },
+    {
+     "test_id": "TEST-061",
+     "scenario_code": "MAL-008",
+     "variant": 5,
+     "ttd_s": 82.0,
+     "ttt_s": 33.0,
+     "ttc_s": 269.0,
+     "propagation_s": 45.0
+    },
+    {
+     "test_id": "TEST-062",
+     "scenario_code": "MAL-008",
+     "variant": 6,
+     "ttd_s": 74.0,
+     "ttt_s": 103.0,
+     "ttc_s": 362.0,
+     "propagation_s": 71.0
+    },
+    {
+     "test_id": "TEST-063",
+     "scenario_code": "MAL-008",
+     "variant": 7,
+     "ttd_s": 58.0,
+     "ttt_s": 107.0,
+     "ttc_s": 362.0,
+     "propagation_s": 59.0
+    },
+    {
+     "test_id": "TEST-064",
+     "scenario_code": "MAL-008",
+     "variant": 8,
+     "ttd_s": 48.0,
+     "ttt_s": 103.0,
+     "ttc_s": 440.0,
+     "propagation_s": 93.0
+    },
+    {
+     "test_id": "TEST-065",
+     "scenario_code": "MAL-009",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-066",
+     "scenario_code": "MAL-009",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-067",
+     "scenario_code": "MAL-009",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-068",
+     "scenario_code": "MAL-009",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-069",
+     "scenario_code": "MAL-009",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-070",
+     "scenario_code": "MAL-009",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-071",
+     "scenario_code": "MAL-009",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-072",
+     "scenario_code": "MAL-009",
+     "variant": 8,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-073",
+     "scenario_code": "MAL-010",
+     "variant": 1,
+     "ttd_s": 55.0,
+     "ttt_s": 111.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-074",
+     "scenario_code": "MAL-010",
+     "variant": 2,
+     "ttd_s": 39.0,
+     "ttt_s": 40.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-075",
+     "scenario_code": "MAL-010",
+     "variant": 3,
+     "ttd_s": 54.0,
+     "ttt_s": 67.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-076",
+     "scenario_code": "MAL-010",
+     "variant": 4,
+     "ttd_s": 34.0,
+     "ttt_s": 112.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-077",
+     "scenario_code": "MAL-010",
+     "variant": 5,
+     "ttd_s": 52.0,
+     "ttt_s": 123.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-078",
+     "scenario_code": "MAL-010",
+     "variant": 6,
+     "ttd_s": 54.0,
+     "ttt_s": 85.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-079",
+     "scenario_code": "MAL-010",
+     "variant": 7,
+     "ttd_s": 41.0,
+     "ttt_s": 44.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-080",
+     "scenario_code": "MAL-010",
+     "variant": 8,
+     "ttd_s": 43.0,
+     "ttt_s": 38.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-081",
+     "scenario_code": "MAL-011",
+     "variant": 1,
+     "ttd_s": 34.0,
+     "ttt_s": 86.0,
+     "ttc_s": 260.0,
+     "propagation_s": 48.0
+    },
+    {
+     "test_id": "TEST-082",
+     "scenario_code": "MAL-011",
+     "variant": 2,
+     "ttd_s": 42.0,
+     "ttt_s": 45.0,
+     "ttc_s": 234.0,
+     "propagation_s": 77.0
+    },
+    {
+     "test_id": "TEST-083",
+     "scenario_code": "MAL-011",
+     "variant": 3,
+     "ttd_s": 40.0,
+     "ttt_s": 85.0,
+     "ttc_s": 387.0,
+     "propagation_s": 117.0
+    },
+    {
+     "test_id": "TEST-084",
+     "scenario_code": "MAL-011",
+     "variant": 4,
+     "ttd_s": 35.0,
+     "ttt_s": 79.0,
+     "ttc_s": 298.0,
+     "propagation_s": 94.0
+    },
+    {
+     "test_id": "TEST-085",
+     "scenario_code": "MAL-011",
+     "variant": 5,
+     "ttd_s": 56.0,
+     "ttt_s": 125.0,
+     "ttc_s": 293.0,
+     "propagation_s": 82.0
+    },
+    {
+     "test_id": "TEST-086",
+     "scenario_code": "MAL-011",
+     "variant": 6,
+     "ttd_s": 58.0,
+     "ttt_s": 92.0,
+     "ttc_s": 343.0,
+     "propagation_s": 20.0
+    },
+    {
+     "test_id": "TEST-087",
+     "scenario_code": "MAL-011",
+     "variant": 7,
+     "ttd_s": 87.0,
+     "ttt_s": 23.0,
+     "ttc_s": 238.0,
+     "propagation_s": 65.0
+    },
+    {
+     "test_id": "TEST-088",
+     "scenario_code": "MAL-011",
+     "variant": 8,
+     "ttd_s": 61.0,
+     "ttt_s": 132.0,
+     "ttc_s": 494.0,
+     "propagation_s": 115.0
+    },
+    {
+     "test_id": "TEST-089",
+     "scenario_code": "MAL-012",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": 25.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-090",
+     "scenario_code": "MAL-012",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": 32.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-091",
+     "scenario_code": "MAL-012",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": 86.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-092",
+     "scenario_code": "MAL-012",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": 143.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-093",
+     "scenario_code": "MAL-012",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": 93.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-094",
+     "scenario_code": "MAL-012",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": 118.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-095",
+     "scenario_code": "MAL-012",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": 30.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-096",
+     "scenario_code": "MAL-012",
+     "variant": 8,
+     "ttd_s": null,
+     "ttt_s": 79.0,
      "ttc_s": null,
      "propagation_s": null
     }
@@ -325,189 +1093,200 @@
    "kpis": {
     "impression_click_visibility": {
      "value": 91.7,
-     "num": 11,
-     "den": 12
+     "num": 88,
+     "den": 96
     },
     "click_landing_visibility": {
      "value": 83.3,
-     "num": 10,
-     "den": 12,
-     "blocked_inline": 2,
+     "num": 80,
+     "den": 96,
+     "blocked_inline": 16,
      "missing_telemetry": 0
     },
     "detection_coverage": {
      "value": 100.0,
-     "num": 10,
-     "den": 10
+     "num": 80,
+     "den": 80
     },
     "ttd": {
-     "n": 10,
-     "mean": 41.8,
-     "median": 39.5,
-     "min": 2.0,
+     "n": 80,
+     "mean": 42.1,
+     "median": 43.5,
+     "min": 1.0,
      "max": 87.0
     },
     "ttt": {
-     "n": 10,
-     "mean": 85.0,
-     "median": 91.5,
-     "min": 37.0,
-     "max": 144.0
+     "n": 80,
+     "mean": 82.2,
+     "median": 85.0,
+     "min": 21.0,
+     "max": 150.0
     },
     "ttc": {
-     "n": 9,
-     "mean": 232.0,
-     "median": 306.0,
+     "n": 72,
+     "mean": 219.8,
+     "median": 258.5,
      "min": 1.0,
-     "max": 416.0
+     "max": 494.0
     },
     "blocking_propagation": {
-     "n": 9,
-     "mean": 39.8,
-     "median": 30.0,
+     "n": 72,
+     "mean": 54.8,
+     "median": 56.0,
      "min": 1.0,
-     "max": 92.0
+     "max": 118.0
     },
     "redirect_inspection": {
      "value": 100.0,
-     "num": 17,
-     "den": 17
+     "num": 144,
+     "den": 144
     },
     "containment_success": {
      "value": 90.0,
-     "num": 9,
-     "den": 10,
-     "attempted": 10,
-     "failed": 1
+     "num": 72,
+     "den": 80,
+     "attempted": 80,
+     "failed": 8
     },
     "false_positive": {
-     "legitimate_tested": 2,
+     "legitimate_tested": 16,
      "legitimate_with_incident": 0,
      "legitimate_blocked": 0,
      "rate": {
       "value": 0.0,
       "num": 0,
-      "den": 2
+      "den": 16
      }
     },
     "identity_protection": {
      "value": 100.0,
-     "num": 1,
-     "den": 1
+     "num": 8,
+     "den": 8
     },
     "evidence_completeness": {
      "value": 98.2,
-     "num": 108,
-     "den": 110,
+     "num": 864,
+     "den": 880,
      "label": "POC evidence-completeness metric (not an industry standard)"
     },
     "journey_reconstruction": {
      "value": 91.7,
-     "num": 11,
-     "den": 12
+     "num": 88,
+     "den": 96
     },
     "alerts": {
-     "total": 10,
-     "true_positive": 10,
+     "total": 80,
+     "true_positive": 80,
      "false_positive": 0,
      "by_severity": {
-      "High": 4,
-      "Medium": 6,
+      "High": 32,
+      "Medium": 48,
       "Low": 0
      }
     },
     "totals": {
-     "tests": 12,
-     "attack_tests": 10,
-     "benign_tests": 2,
-     "pass_": 10,
-     "fail": 2
+     "tests": 96,
+     "attack_tests": 80,
+     "benign_tests": 16,
+     "pass_": 80,
+     "fail": 16
     }
    },
    "per_test": [
     {
      "test_id": "TEST-001",
      "scenario_code": "MAL-001",
-     "ttd_s": 2.0,
+     "variant": 1,
+     "ttd_s": 1.0,
      "ttt_s": 42.0,
      "ttc_s": 1.0,
      "propagation_s": 1.0
     },
     {
      "test_id": "TEST-002",
-     "scenario_code": "MAL-002",
-     "ttd_s": 37.0,
+     "scenario_code": "MAL-001",
+     "variant": 2,
+     "ttd_s": 1.0,
      "ttt_s": 97.0,
-     "ttc_s": 337.0,
-     "propagation_s": 70.0
-    },
-    {
-     "test_id": "TEST-003",
-     "scenario_code": "MAL-003",
-     "ttd_s": 73.0,
-     "ttt_s": 97.0,
-     "ttc_s": 30.0,
-     "propagation_s": 20.0
-    },
-    {
-     "test_id": "TEST-004",
-     "scenario_code": "MAL-004",
-     "ttd_s": 42.0,
-     "ttt_s": 144.0,
-     "ttc_s": 416.0,
-     "propagation_s": 90.0
-    },
-    {
-     "test_id": "TEST-005",
-     "scenario_code": "MAL-005",
-     "ttd_s": 31.0,
-     "ttt_s": 67.0,
-     "ttc_s": 306.0,
-     "propagation_s": 23.0
-    },
-    {
-     "test_id": "TEST-006",
-     "scenario_code": "MAL-006",
-     "ttd_s": 87.0,
-     "ttt_s": 37.0,
-     "ttc_s": 258.0,
-     "propagation_s": 30.0
-    },
-    {
-     "test_id": "TEST-007",
-     "scenario_code": "MAL-007",
-     "ttd_s": null,
-     "ttt_s": null,
-     "ttc_s": null,
-     "propagation_s": null
-    },
-    {
-     "test_id": "TEST-008",
-     "scenario_code": "MAL-008",
-     "ttd_s": 62.0,
-     "ttt_s": 117.0,
-     "ttc_s": 407.0,
-     "propagation_s": 31.0
-    },
-    {
-     "test_id": "TEST-009",
-     "scenario_code": "MAL-009",
-     "ttd_s": 3.0,
-     "ttt_s": 86.0,
      "ttc_s": 1.0,
      "propagation_s": 1.0
     },
     {
+     "test_id": "TEST-003",
+     "scenario_code": "MAL-001",
+     "variant": 3,
+     "ttd_s": 1.0,
+     "ttt_s": 97.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-004",
+     "scenario_code": "MAL-001",
+     "variant": 4,
+     "ttd_s": 1.0,
+     "ttt_s": 144.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-005",
+     "scenario_code": "MAL-001",
+     "variant": 5,
+     "ttd_s": 1.0,
+     "ttt_s": 67.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-006",
+     "scenario_code": "MAL-001",
+     "variant": 6,
+     "ttd_s": 1.0,
+     "ttt_s": 37.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-007",
+     "scenario_code": "MAL-001",
+     "variant": 7,
+     "ttd_s": 1.0,
+     "ttt_s": 89.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-008",
+     "scenario_code": "MAL-001",
+     "variant": 8,
+     "ttd_s": 1.0,
+     "ttt_s": 117.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-009",
+     "scenario_code": "MAL-002",
+     "variant": 1,
+     "ttd_s": 39.0,
+     "ttt_s": 86.0,
+     "ttc_s": 401.0,
+     "propagation_s": 72.0
+    },
+    {
      "test_id": "TEST-010",
-     "scenario_code": "MAL-010",
-     "ttd_s": 34.0,
+     "scenario_code": "MAL-002",
+     "variant": 2,
+     "ttd_s": 64.0,
      "ttt_s": 108.0,
-     "ttc_s": null,
-     "propagation_s": null
+     "ttc_s": 387.0,
+     "propagation_s": 115.0
     },
     {
      "test_id": "TEST-011",
-     "scenario_code": "MAL-011",
+     "scenario_code": "MAL-002",
+     "variant": 3,
      "ttd_s": 47.0,
      "ttt_s": 55.0,
      "ttc_s": 332.0,
@@ -515,7 +1294,764 @@
     },
     {
      "test_id": "TEST-012",
+     "scenario_code": "MAL-002",
+     "variant": 4,
+     "ttd_s": 57.0,
+     "ttt_s": 40.0,
+     "ttc_s": 244.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-013",
+     "scenario_code": "MAL-002",
+     "variant": 5,
+     "ttd_s": 32.0,
+     "ttt_s": 140.0,
+     "ttc_s": 400.0,
+     "propagation_s": 32.0
+    },
+    {
+     "test_id": "TEST-014",
+     "scenario_code": "MAL-002",
+     "variant": 6,
+     "ttd_s": 60.0,
+     "ttt_s": 99.0,
+     "ttc_s": 412.0,
+     "propagation_s": 112.0
+    },
+    {
+     "test_id": "TEST-015",
+     "scenario_code": "MAL-002",
+     "variant": 7,
+     "ttd_s": 68.0,
+     "ttt_s": 76.0,
+     "ttc_s": 218.0,
+     "propagation_s": 26.0
+    },
+    {
+     "test_id": "TEST-016",
+     "scenario_code": "MAL-002",
+     "variant": 8,
+     "ttd_s": 37.0,
+     "ttt_s": 40.0,
+     "ttc_s": 243.0,
+     "propagation_s": 108.0
+    },
+    {
+     "test_id": "TEST-017",
+     "scenario_code": "MAL-003",
+     "variant": 1,
+     "ttd_s": 41.0,
+     "ttt_s": 63.0,
+     "ttc_s": 73.0,
+     "propagation_s": 63.0
+    },
+    {
+     "test_id": "TEST-018",
+     "scenario_code": "MAL-003",
+     "variant": 2,
+     "ttd_s": 26.0,
+     "ttt_s": 21.0,
+     "ttc_s": 94.0,
+     "propagation_s": 84.0
+    },
+    {
+     "test_id": "TEST-019",
+     "scenario_code": "MAL-003",
+     "variant": 3,
+     "ttd_s": 65.0,
+     "ttt_s": 124.0,
+     "ttc_s": 102.0,
+     "propagation_s": 92.0
+    },
+    {
+     "test_id": "TEST-020",
+     "scenario_code": "MAL-003",
+     "variant": 4,
+     "ttd_s": 40.0,
+     "ttt_s": 51.0,
+     "ttc_s": 52.0,
+     "propagation_s": 42.0
+    },
+    {
+     "test_id": "TEST-021",
+     "scenario_code": "MAL-003",
+     "variant": 5,
+     "ttd_s": 46.0,
+     "ttt_s": 28.0,
+     "ttc_s": 54.0,
+     "propagation_s": 44.0
+    },
+    {
+     "test_id": "TEST-022",
+     "scenario_code": "MAL-003",
+     "variant": 6,
+     "ttd_s": 28.0,
+     "ttt_s": 61.0,
+     "ttc_s": 92.0,
+     "propagation_s": 82.0
+    },
+    {
+     "test_id": "TEST-023",
+     "scenario_code": "MAL-003",
+     "variant": 7,
+     "ttd_s": 37.0,
+     "ttt_s": 58.0,
+     "ttc_s": 67.0,
+     "propagation_s": 57.0
+    },
+    {
+     "test_id": "TEST-024",
+     "scenario_code": "MAL-003",
+     "variant": 8,
+     "ttd_s": 45.0,
+     "ttt_s": 150.0,
+     "ttc_s": 42.0,
+     "propagation_s": 32.0
+    },
+    {
+     "test_id": "TEST-025",
+     "scenario_code": "MAL-004",
+     "variant": 1,
+     "ttd_s": 54.0,
+     "ttt_s": 144.0,
+     "ttc_s": 436.0,
+     "propagation_s": 113.0
+    },
+    {
+     "test_id": "TEST-026",
+     "scenario_code": "MAL-004",
+     "variant": 2,
+     "ttd_s": 44.0,
+     "ttt_s": 40.0,
+     "ttc_s": 385.0,
+     "propagation_s": 103.0
+    },
+    {
+     "test_id": "TEST-027",
+     "scenario_code": "MAL-004",
+     "variant": 3,
+     "ttd_s": 65.0,
+     "ttt_s": 27.0,
+     "ttc_s": 164.0,
+     "propagation_s": 26.0
+    },
+    {
+     "test_id": "TEST-028",
+     "scenario_code": "MAL-004",
+     "variant": 4,
+     "ttd_s": 53.0,
+     "ttt_s": 33.0,
+     "ttc_s": 298.0,
+     "propagation_s": 78.0
+    },
+    {
+     "test_id": "TEST-029",
+     "scenario_code": "MAL-004",
+     "variant": 5,
+     "ttd_s": 43.0,
+     "ttt_s": 62.0,
+     "ttc_s": 316.0,
+     "propagation_s": 23.0
+    },
+    {
+     "test_id": "TEST-030",
+     "scenario_code": "MAL-004",
+     "variant": 6,
+     "ttd_s": 53.0,
+     "ttt_s": 78.0,
+     "ttc_s": 279.0,
+     "propagation_s": 54.0
+    },
+    {
+     "test_id": "TEST-031",
+     "scenario_code": "MAL-004",
+     "variant": 7,
+     "ttd_s": 44.0,
+     "ttt_s": 131.0,
+     "ttc_s": 456.0,
+     "propagation_s": 99.0
+    },
+    {
+     "test_id": "TEST-032",
+     "scenario_code": "MAL-004",
+     "variant": 8,
+     "ttd_s": 56.0,
+     "ttt_s": 92.0,
+     "ttc_s": 219.0,
+     "propagation_s": 25.0
+    },
+    {
+     "test_id": "TEST-033",
+     "scenario_code": "MAL-005",
+     "variant": 1,
+     "ttd_s": 36.0,
+     "ttt_s": 72.0,
+     "ttc_s": 204.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-034",
+     "scenario_code": "MAL-005",
+     "variant": 2,
+     "ttd_s": 51.0,
+     "ttt_s": 96.0,
+     "ttc_s": 307.0,
+     "propagation_s": 118.0
+    },
+    {
+     "test_id": "TEST-035",
+     "scenario_code": "MAL-005",
+     "variant": 3,
+     "ttd_s": 35.0,
+     "ttt_s": 44.0,
+     "ttc_s": 310.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-036",
+     "scenario_code": "MAL-005",
+     "variant": 4,
+     "ttd_s": 43.0,
+     "ttt_s": 121.0,
+     "ttc_s": 353.0,
+     "propagation_s": 87.0
+    },
+    {
+     "test_id": "TEST-037",
+     "scenario_code": "MAL-005",
+     "variant": 5,
+     "ttd_s": 61.0,
+     "ttt_s": 61.0,
+     "ttc_s": 235.0,
+     "propagation_s": 29.0
+    },
+    {
+     "test_id": "TEST-038",
+     "scenario_code": "MAL-005",
+     "variant": 6,
+     "ttd_s": 35.0,
+     "ttt_s": 114.0,
+     "ttc_s": 329.0,
+     "propagation_s": 41.0
+    },
+    {
+     "test_id": "TEST-039",
+     "scenario_code": "MAL-005",
+     "variant": 7,
+     "ttd_s": 35.0,
+     "ttt_s": 61.0,
+     "ttc_s": 358.0,
+     "propagation_s": 100.0
+    },
+    {
+     "test_id": "TEST-040",
+     "scenario_code": "MAL-005",
+     "variant": 8,
+     "ttd_s": 37.0,
+     "ttt_s": 88.0,
+     "ttc_s": 300.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-041",
+     "scenario_code": "MAL-006",
+     "variant": 1,
+     "ttd_s": 66.0,
+     "ttt_s": 49.0,
+     "ttc_s": 255.0,
+     "propagation_s": 115.0
+    },
+    {
+     "test_id": "TEST-042",
+     "scenario_code": "MAL-006",
+     "variant": 2,
+     "ttd_s": 65.0,
+     "ttt_s": 135.0,
+     "ttc_s": 329.0,
+     "propagation_s": 61.0
+    },
+    {
+     "test_id": "TEST-043",
+     "scenario_code": "MAL-006",
+     "variant": 3,
+     "ttd_s": 83.0,
+     "ttt_s": 125.0,
+     "ttc_s": 343.0,
+     "propagation_s": 75.0
+    },
+    {
+     "test_id": "TEST-044",
+     "scenario_code": "MAL-006",
+     "variant": 4,
+     "ttd_s": 83.0,
+     "ttt_s": 63.0,
+     "ttc_s": 238.0,
+     "propagation_s": 74.0
+    },
+    {
+     "test_id": "TEST-045",
+     "scenario_code": "MAL-006",
+     "variant": 5,
+     "ttd_s": 76.0,
+     "ttt_s": 29.0,
+     "ttc_s": 287.0,
+     "propagation_s": 60.0
+    },
+    {
+     "test_id": "TEST-046",
+     "scenario_code": "MAL-006",
+     "variant": 6,
+     "ttd_s": 63.0,
+     "ttt_s": 63.0,
+     "ttc_s": 281.0,
+     "propagation_s": 92.0
+    },
+    {
+     "test_id": "TEST-047",
+     "scenario_code": "MAL-006",
+     "variant": 7,
+     "ttd_s": 65.0,
+     "ttt_s": 124.0,
+     "ttc_s": 345.0,
+     "propagation_s": 55.0
+    },
+    {
+     "test_id": "TEST-048",
+     "scenario_code": "MAL-006",
+     "variant": 8,
+     "ttd_s": 69.0,
+     "ttt_s": 127.0,
+     "ttc_s": 322.0,
+     "propagation_s": 32.0
+    },
+    {
+     "test_id": "TEST-049",
+     "scenario_code": "MAL-007",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-050",
+     "scenario_code": "MAL-007",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-051",
+     "scenario_code": "MAL-007",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-052",
+     "scenario_code": "MAL-007",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-053",
+     "scenario_code": "MAL-007",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-054",
+     "scenario_code": "MAL-007",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-055",
+     "scenario_code": "MAL-007",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-056",
+     "scenario_code": "MAL-007",
+     "variant": 8,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-057",
+     "scenario_code": "MAL-008",
+     "variant": 1,
+     "ttd_s": 74.0,
+     "ttt_s": 88.0,
+     "ttc_s": 314.0,
+     "propagation_s": 89.0
+    },
+    {
+     "test_id": "TEST-058",
+     "scenario_code": "MAL-008",
+     "variant": 2,
+     "ttd_s": 39.0,
+     "ttt_s": 70.0,
+     "ttc_s": 334.0,
+     "propagation_s": 30.0
+    },
+    {
+     "test_id": "TEST-059",
+     "scenario_code": "MAL-008",
+     "variant": 3,
+     "ttd_s": 77.0,
+     "ttt_s": 65.0,
+     "ttc_s": 257.0,
+     "propagation_s": 38.0
+    },
+    {
+     "test_id": "TEST-060",
+     "scenario_code": "MAL-008",
+     "variant": 4,
+     "ttd_s": 58.0,
+     "ttt_s": 135.0,
+     "ttc_s": 364.0,
+     "propagation_s": 114.0
+    },
+    {
+     "test_id": "TEST-061",
+     "scenario_code": "MAL-008",
+     "variant": 5,
+     "ttd_s": 82.0,
+     "ttt_s": 33.0,
+     "ttc_s": 269.0,
+     "propagation_s": 45.0
+    },
+    {
+     "test_id": "TEST-062",
+     "scenario_code": "MAL-008",
+     "variant": 6,
+     "ttd_s": 74.0,
+     "ttt_s": 103.0,
+     "ttc_s": 362.0,
+     "propagation_s": 71.0
+    },
+    {
+     "test_id": "TEST-063",
+     "scenario_code": "MAL-008",
+     "variant": 7,
+     "ttd_s": 58.0,
+     "ttt_s": 107.0,
+     "ttc_s": 362.0,
+     "propagation_s": 59.0
+    },
+    {
+     "test_id": "TEST-064",
+     "scenario_code": "MAL-008",
+     "variant": 8,
+     "ttd_s": 48.0,
+     "ttt_s": 103.0,
+     "ttc_s": 440.0,
+     "propagation_s": 93.0
+    },
+    {
+     "test_id": "TEST-065",
+     "scenario_code": "MAL-009",
+     "variant": 1,
+     "ttd_s": 2.0,
+     "ttt_s": 82.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-066",
+     "scenario_code": "MAL-009",
+     "variant": 2,
+     "ttd_s": 2.0,
+     "ttt_s": 143.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-067",
+     "scenario_code": "MAL-009",
+     "variant": 3,
+     "ttd_s": 2.0,
+     "ttt_s": 50.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-068",
+     "scenario_code": "MAL-009",
+     "variant": 4,
+     "ttd_s": 2.0,
+     "ttt_s": 116.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-069",
+     "scenario_code": "MAL-009",
+     "variant": 5,
+     "ttd_s": 2.0,
+     "ttt_s": 94.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-070",
+     "scenario_code": "MAL-009",
+     "variant": 6,
+     "ttd_s": 2.0,
+     "ttt_s": 92.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-071",
+     "scenario_code": "MAL-009",
+     "variant": 7,
+     "ttd_s": 2.0,
+     "ttt_s": 111.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-072",
+     "scenario_code": "MAL-009",
+     "variant": 8,
+     "ttd_s": 2.0,
+     "ttt_s": 31.0,
+     "ttc_s": 1.0,
+     "propagation_s": 1.0
+    },
+    {
+     "test_id": "TEST-073",
+     "scenario_code": "MAL-010",
+     "variant": 1,
+     "ttd_s": 55.0,
+     "ttt_s": 111.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-074",
+     "scenario_code": "MAL-010",
+     "variant": 2,
+     "ttd_s": 39.0,
+     "ttt_s": 40.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-075",
+     "scenario_code": "MAL-010",
+     "variant": 3,
+     "ttd_s": 54.0,
+     "ttt_s": 67.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-076",
+     "scenario_code": "MAL-010",
+     "variant": 4,
+     "ttd_s": 34.0,
+     "ttt_s": 112.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-077",
+     "scenario_code": "MAL-010",
+     "variant": 5,
+     "ttd_s": 52.0,
+     "ttt_s": 123.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-078",
+     "scenario_code": "MAL-010",
+     "variant": 6,
+     "ttd_s": 54.0,
+     "ttt_s": 85.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-079",
+     "scenario_code": "MAL-010",
+     "variant": 7,
+     "ttd_s": 41.0,
+     "ttt_s": 44.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-080",
+     "scenario_code": "MAL-010",
+     "variant": 8,
+     "ttd_s": 43.0,
+     "ttt_s": 38.0,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-081",
+     "scenario_code": "MAL-011",
+     "variant": 1,
+     "ttd_s": 34.0,
+     "ttt_s": 86.0,
+     "ttc_s": 260.0,
+     "propagation_s": 48.0
+    },
+    {
+     "test_id": "TEST-082",
+     "scenario_code": "MAL-011",
+     "variant": 2,
+     "ttd_s": 42.0,
+     "ttt_s": 45.0,
+     "ttc_s": 234.0,
+     "propagation_s": 77.0
+    },
+    {
+     "test_id": "TEST-083",
+     "scenario_code": "MAL-011",
+     "variant": 3,
+     "ttd_s": 40.0,
+     "ttt_s": 85.0,
+     "ttc_s": 387.0,
+     "propagation_s": 117.0
+    },
+    {
+     "test_id": "TEST-084",
+     "scenario_code": "MAL-011",
+     "variant": 4,
+     "ttd_s": 35.0,
+     "ttt_s": 79.0,
+     "ttc_s": 298.0,
+     "propagation_s": 94.0
+    },
+    {
+     "test_id": "TEST-085",
+     "scenario_code": "MAL-011",
+     "variant": 5,
+     "ttd_s": 56.0,
+     "ttt_s": 125.0,
+     "ttc_s": 293.0,
+     "propagation_s": 82.0
+    },
+    {
+     "test_id": "TEST-086",
+     "scenario_code": "MAL-011",
+     "variant": 6,
+     "ttd_s": 58.0,
+     "ttt_s": 92.0,
+     "ttc_s": 343.0,
+     "propagation_s": 20.0
+    },
+    {
+     "test_id": "TEST-087",
+     "scenario_code": "MAL-011",
+     "variant": 7,
+     "ttd_s": 87.0,
+     "ttt_s": 23.0,
+     "ttc_s": 238.0,
+     "propagation_s": 65.0
+    },
+    {
+     "test_id": "TEST-088",
+     "scenario_code": "MAL-011",
+     "variant": 8,
+     "ttd_s": 61.0,
+     "ttt_s": 132.0,
+     "ttc_s": 494.0,
+     "propagation_s": 115.0
+    },
+    {
+     "test_id": "TEST-089",
      "scenario_code": "MAL-012",
+     "variant": 1,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-090",
+     "scenario_code": "MAL-012",
+     "variant": 2,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-091",
+     "scenario_code": "MAL-012",
+     "variant": 3,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-092",
+     "scenario_code": "MAL-012",
+     "variant": 4,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-093",
+     "scenario_code": "MAL-012",
+     "variant": 5,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-094",
+     "scenario_code": "MAL-012",
+     "variant": 6,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-095",
+     "scenario_code": "MAL-012",
+     "variant": 7,
+     "ttd_s": null,
+     "ttt_s": null,
+     "ttc_s": null,
+     "propagation_s": null
+    },
+    {
+     "test_id": "TEST-096",
+     "scenario_code": "MAL-012",
+     "variant": 8,
      "ttd_s": null,
      "ttt_s": null,
      "ttc_s": null,
